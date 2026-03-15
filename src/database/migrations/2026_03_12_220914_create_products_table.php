@@ -19,7 +19,11 @@ class CreateProductsTable extends Migration
             $table->string('name', 100);
             $table->text('description');
             $table->integer('price');
-            $table->enum('status',['selling', 'sold']);
+            $table->enum('status', ['selling', 'sold']);
+            $table->enum('condition', ['新品・未使用', '良好', 'やや傷や汚れあり', '状態が悪い']);
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            $table->string('brand', 100);
+            $table->string('image');
             $table->timestamps();
         });
     }

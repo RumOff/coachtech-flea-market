@@ -20,6 +20,10 @@ class ProductsTableSeeder extends Seeder
             'description' => 'スタイリッシュなデザインのメンズ腕時計',
             'price' => 15000,
             'status' => 'selling',
+            'condition' => '良好',
+            'category_id' => 1,
+            'brand' => 'Rolax',
+            'image' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Armani+Mens+Clock.jpg',
         ]);
         
         Product::create([
@@ -28,6 +32,10 @@ class ProductsTableSeeder extends Seeder
             'description' => '高速で信頼性の高いハードディスク',
             'price' => 5000,
             'status' => 'selling',
+            'condition' => '良好',
+            'category_id' => 1,
+            'brand' => '西芝',
+            'image' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/HDD+Hard+Disk.jpg',
         ]);
 
         Product::create([
@@ -36,6 +44,10 @@ class ProductsTableSeeder extends Seeder
             'description' => '新鮮な玉ねぎ3束のセット',
             'price' => 300,
             'status' => 'selling',
+            'condition' => '良好',
+            'category_id' => 1,
+            'brand' => 'Rolax',
+            'image' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/iLoveIMG+d.jpg',
         ]);
 
         Product::create([
@@ -44,6 +56,10 @@ class ProductsTableSeeder extends Seeder
             'description' => 'クラシックなデザインの革靴',
             'price' => 4000,
             'status' => 'selling',
+            'condition' => '良好',
+            'category_id' => 1,
+            'brand' => 'Rolax',
+            'image' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Leather+Shoes+Product+Photo.jpg',
         ]);
 
         Product::create([
@@ -52,6 +68,10 @@ class ProductsTableSeeder extends Seeder
             'description' => '高性能なノートパソコン',
             'price' => 45000,
             'status' => 'selling',
+            'condition' => '良好',
+            'category_id' => 1,
+            'brand' => 'Rolax',
+            'image' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Living+Room+Laptop.jpg',
         ]);
 
         Product::create([
@@ -60,6 +80,10 @@ class ProductsTableSeeder extends Seeder
             'description' => '高音質のレコーディング用マイク',
             'price' => 8000,
             'status' => 'selling',
+            'condition' => '良好',
+            'category_id' => 1,
+            'brand' => 'Rolax',
+            'image' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Music+Mic+4632231.jpg',
         ]);
 
         Product::create([
@@ -68,6 +92,10 @@ class ProductsTableSeeder extends Seeder
             'description' => 'おしゃれなショルダーバッグ',
             'price' => 3500,
             'status' => 'selling',
+            'condition' => '良好',
+            'category_id' => 1,
+            'brand' => 'Rolax',
+            'image' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Purse+fashion+pocket.jpg',
         ]);
 
         Product::create([
@@ -76,6 +104,10 @@ class ProductsTableSeeder extends Seeder
             'description' => '使いやすいタンブラー',
             'price' => 500,
             'status' => 'selling',
+            'condition' => '良好',
+            'category_id' => 1,
+            'brand' => 'Rolax',
+            'image' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Tumbler+souvenir.jpg',
         ]);
 
         Product::create([
@@ -84,6 +116,10 @@ class ProductsTableSeeder extends Seeder
             'description' => '手動のコーヒーミル',
             'price' => 4000,
             'status' => 'selling',
+            'condition' => '良好',
+            'category_id' => 1,
+            'brand' => 'Starbacks',
+            'image' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/Waitress+with+Coffee+Grinder.jpg',
         ]);
 
         Product::create([
@@ -92,6 +128,10 @@ class ProductsTableSeeder extends Seeder
             'description' => '便利なメイクアップセット',
             'price' => 2500,
             'status' => 'selling',
+            'condition' => '良好',
+            'category_id' => 1,
+            'brand' => 'Rolax',
+            'image' => 'https://coachtech-matter.s3.ap-northeast-1.amazonaws.com/image/%E5%A4%96%E5%87%BA%E3%83%A1%E3%82%A4%E3%82%AF%E3%82%A2%E3%83%83%E3%83%95%E3%82%9A%E3%82%BB%E3%83%83%E3%83%88.jpg',
         ]);
     }
 }
