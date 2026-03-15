@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 
 class ProductsTableSeeder extends Seeder
 {
@@ -14,97 +14,84 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('products')->insert([
-        [
+        Product::create([
             'user_id' => 1,
             'name' => '腕時計',
             'description' => 'スタイリッシュなデザインのメンズ腕時計',
             'price' => 15000,
             'status' => 'selling',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ],
-        [
+        ]);
+        
+        Product::create([
             'user_id' => 1,
             'name' => 'HDD',
             'description' => '高速で信頼性の高いハードディスク',
             'price' => 5000,
             'status' => 'selling',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ],
-        [
+        ]);
+
+        Product::create([
             'user_id' => 1,
             'name' => '玉ねぎ3束',
             'description' => '新鮮な玉ねぎ3束のセット',
             'price' => 300,
             'status' => 'selling',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ],
-        [
+        ]);
+
+        Product::create([
             'user_id' => 1,
             'name' => '革靴',
             'description' => 'クラシックなデザインの革靴',
             'price' => 4000,
             'status' => 'selling',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ],
-        [
+        ]);
+
+        Product::create([
             'user_id' => 1,
             'name' => 'ノートPC',
             'description' => '高性能なノートパソコン',
             'price' => 45000,
             'status' => 'selling',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ],
-        [
+        ]);
+
+        Product::create([
             'user_id' => 1,
             'name' => 'マイク',
             'description' => '高音質のレコーディング用マイク',
             'price' => 8000,
             'status' => 'selling',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ],
-        [
+        ]);
+
+        Product::create([
             'user_id' => 1,
             'name' => 'ショルダーバッグ',
             'description' => 'おしゃれなショルダーバッグ',
             'price' => 3500,
             'status' => 'selling',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ],
-        [
+        ]);
+
+        Product::create([
             'user_id' => 1,
             'name' => 'タンブラー',
             'description' => '使いやすいタンブラー',
             'price' => 500,
             'status' => 'selling',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ],
-        [
+        ]);
+
+        Product::create([
             'user_id' => 1,
             'name' => 'コーヒーミル',
             'description' => '手動のコーヒーミル',
             'price' => 4000,
             'status' => 'selling',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ],
-        [
+        ]);
+
+        Product::create([
             'user_id' => 1,
             'name' => 'メイクセット',
             'description' => '便利なメイクアップセット',
             'price' => 2500,
             'status' => 'selling',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]
         ]);
     }
 }
