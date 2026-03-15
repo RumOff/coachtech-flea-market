@@ -16,10 +16,10 @@ class ProductController extends Controller
         return view('index', compact('products'));
     }
 
-    public function show()
+    public function show($item_id)
     {
-        $products = Product::all();
+        $product = Product::findOrFail($item_id);
 
-        return view('item', compact('products'));
+        return view('show', compact('product'));
     }
 }
