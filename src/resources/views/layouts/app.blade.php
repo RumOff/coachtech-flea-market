@@ -14,35 +14,45 @@
 <body>
   <header class="header">
     <div class="header__inner">
-      <div class="header-utilities">
-        <a class="header__logo" href="/">
-          <img src="{{ asset('images/COACHTECHヘッダーロゴ.png') }}" alt="logo" class="header__img">
-        </a>
-        <nav>
-          <ul class="header-nav">
 
-            {{-- @if(request()->is('admin*')) --}}
-            @auth
-            <li class="header-nav__item">
+      {{-- ロゴ --}}
+      <a class="header__logo" href="/">
+        <img src="{{ asset('images/COACHTECHヘッダーロゴ.png') }}" alt="logo" class="header__img">
+      </a>
+
+      {{-- 検索ボックス --}}
+      <div class="header__search">
+        <form action="/search" method="GET">
+          <input type="text" name="keyword" class="header__search-box" placeholder="なにをお探しですか？">
+        </form>
+      </div>  
+
+      {{-- ナビ --}}
+      <nav class="header__nav">
+        <ul class="nav-list">
+          
+          @auth
+            <li class="nav-list__item">
               <form action="/logout" method="post">
                 @csrf
-                <button class="header-nav__button">logout</button>
+                <button class="nav-list__button btn-logout">ログアウト</button>
               </form>
             </li>
-            @endauth
-            {{-- @elseif(request()->is('login*'))
-            <li class="header-nav__item">
-              <a href="/register" class="header-nav__button">register</a>
-            </li>
-            @elseif(request()->is('register*'))
-            <li class="header-nav__item">
-              <a href="/login" class="header-nav__button">login</a>
-            </li>
-            @endif --}}
+          @else
+              <li class="nav-list__item">
+                <a href="/login" class="nav-list__link">ログイン</a>
+              </li>
+          @endauth
 
-          </ul>
-        </nav>
-      </div>
+          <li class="nav-list__item">
+            <a href="/mypage" class="nav-list__link">マイページ</a>
+          </li>
+          <li class="nav-list__item">
+            <a href="/sell" class="nav-list__link nav-list__link--sell">出品</a>
+          </li>
+
+        </ul>
+      </nav>
     </div>
   </header>
 

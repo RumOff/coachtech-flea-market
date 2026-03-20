@@ -22,7 +22,8 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+       $this->app->singleton(RegisterResponseContract::class, RegisterResponse::class);
+        
     }
 
     /**
@@ -46,10 +47,6 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(10)->by($email . $request->ip());
         });
 
-        $this->app->singleton(
-            RegisterResponseContract::class,
-            RegisterResponse::class
-        );
-
+        Fortify::redirects('register', '/mypage/profile');
     }
 }

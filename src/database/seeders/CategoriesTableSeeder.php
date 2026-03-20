@@ -15,7 +15,18 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         Category::create(['name' => 'ファッション']);
-        Category::create(['name' => '時計']);
-        Category::create(['name' => 'バッグ']);
+        Category::create(['name' => '家電']);
+        Category::create(['name' => 'インテリア']);
+        Category::create(['name' => 'レディース']);
+        Category::create(['name' => 'メンズ']);
+        Category::create(['name' => 'コスメ']);
+        Category::create(['name' => '本']);
+        Category::create(['name' => 'ゲーム']);
+        Category::create(['name' => 'スポーツ']);
+        Category::create(['name' => 'キッチン']);
+        Category::create(['name' => 'ハンドメイド']);
+        Category::create(['name' => 'アクセサリー']);
+        Category::create(['name' => 'おもちゃ']);
+        Category::create(['name' => 'ベビー・キッズ']);
     }
 }

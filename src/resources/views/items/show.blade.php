@@ -1,0 +1,127 @@
+@extends('layouts.app')
+
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/index.css') }}">
+@endsection
+
+@section('content')
+
+<div class="item-detail__container">
+
+    {{-- 画像 --}}
+    <div class="item-detail__left">
+        <img src="{{ $items->image }}" alt="{{ $items->name }}" class="item-detail__image">
+    </div>
+
+    {{-- 商品詳細 --}}
+    <div class="item-detail__right">
+
+        <h1 class="item-detail__name">
+            {{ $items->name }}
+        </h1>
+
+        <p class="item-detail__brand">
+            {{ $items->brand }}
+        </p>
+
+        <p class="item-detail__price">
+            ¥{{ number_format($items->price) }}
+        </p>
+
+
+        {{-- いいね・コメント --}}
+        <div class="item-detail__actions">
+
+            <div class="item-detail__action">
+                ❤️
+                {{-- <span>{{ $items->likes_count ?? 0 }}</span> --}}
+            </div>
+
+            <div class="item-detail__action">
+                💬
+                {{-- <span>{{ $items->comments->count() }}</span> --}}
+            </div>
+
+        </div>
+
+
+        {{-- 購入ボタン --}}
+        <button class="item-detail__buy">
+            購入する
+        </button>
+
+
+        {{-- 商品説明 --}}
+        <div class="item-detail__description">
+            <h2 class="item-detail__section-title">
+                商品説明
+            </h2>
+
+            <p>
+                {{ $items->description }}
+            </p>
+        </div>
+
+
+        {{-- 商品情報 --}}
+        <div class="item-detail__info">
+
+            <h2 class="item-detail__section-title">
+                商品情報
+            </h2>
+
+            <p>
+                <span class="item-detail__label">カテゴリー：</span>
+                {{ $items->category->name ?? '' }}
+            </p>
+
+            <p>
+                <span class="item-detail__label">商品の状態：</span>
+                {{ $items->condition }}
+            </p>
+
+        </div>
+
+
+        {{-- コメント --}}
+        <div class="item-detail__comments">
+
+            <h2 class="item-detail__section-title">
+                コメント
+            </h2>
+
+            {{-- @foreach($items->comments as $comment)
+                <div class="item-comment">
+
+                    <div class="item-comment__user">
+                        {{ $comment->user->name }}
+                    </div>
+
+                    <div class="item-comment__text">
+                        {{ $comment->content }}
+                    </div>
+
+                </div>
+            @endforeach --}}
+
+
+            {{-- コメント投稿 --}}
+            <form method="POST" action="/comments">
+                @csrf
+
+                <textarea 
+                    name="content"
+                    class="item-detail__comment-input"
+                    placeholder="商品へのコメント"></textarea>
+
+                <button class="item-detail__comment-button">
+                    送信する
+                </button>
+
+            </form>
+
+        </div>
+    </div>
+    </div>
+
+@endsection

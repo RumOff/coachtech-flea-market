@@ -12,12 +12,13 @@
         プロフィール設定
     </h1>
 
-    <form action="{{ route('profile.create') }}" method="post" enctype="multipart/form-data" class="profile__form">
+    <form action="{{ route('profile.update') }}" method="post" enctype="multipart/form-data" class="profile__form">
         @csrf
+        @method('PUT')
 
         {{-- プロフィール画像 --}}
         <div class="profile__img">
-            <img src="/img/default.png" alt="" class="profile__avatar">
+            <img src="{{ Auth::user()->avatar ?? '/img/default.png' }}" alt="" class="profile__avatar">
             <label for="avatar" class="profile__upload-btn">
                 画像を選択
             </label>
@@ -30,7 +31,9 @@
                 ユーザー名
             </label>
             <input type="text" name="user_name" class="profile__input">
-            <p class="profile__error"></p>
+            @error('user_name')
+            <p class="profile__error">{{ $message }}</p>
+            @enderror
         </div>
 
         {{-- 郵便番号 --}}
@@ -39,7 +42,9 @@
                 郵便番号
             </label>
             <input type="text" name="postal_code" class="profile__input">
-            <p class="profile__error"></p>
+            @error('postal_code')
+            <p class="profile__error">{{ $message }}</p>
+            @enderror
         </div>
 
         {{-- 住所 --}}
@@ -48,7 +53,9 @@
                 住所
             </label>
             <input type="text" name="address" class="profile__input">
-            <p class="profile__error"></p>
+            @error('address')
+            <p class="profile__error">{{ $message }}</p>
+            @enderror
         </div>
 
         {{-- 建物名 --}}
@@ -57,7 +64,9 @@
                 建物名
             </label>
             <input type="text" name="building" class="profile__input">
-            <p class="profile__error"></p>
+            @error('building')
+            <p class="profile__error">{{ $message }}</p>
+            @enderror
         </div>
 
         <button type="submit" class="profile__btn">
