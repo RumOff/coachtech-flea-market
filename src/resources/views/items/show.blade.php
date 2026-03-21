@@ -10,22 +10,22 @@
 
     {{-- 画像 --}}
     <div class="item-detail__left">
-        <img src="{{ $items->image }}" alt="{{ $items->name }}" class="item-detail__image">
+        <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" class="item-detail__image">
     </div>
 
     {{-- 商品詳細 --}}
     <div class="item-detail__right">
 
         <h1 class="item-detail__name">
-            {{ $items->name }}
+            {{ $item->name }}
         </h1>
 
         <p class="item-detail__brand">
-            {{ $items->brand }}
+            {{ $item->brand }}
         </p>
 
         <p class="item-detail__price">
-            ¥{{ number_format($items->price) }}
+            ¥{{ number_format($item->price) }}
         </p>
 
 
@@ -34,12 +34,12 @@
 
             <div class="item-detail__action">
                 ❤️
-                {{-- <span>{{ $items->likes_count ?? 0 }}</span> --}}
+                {{-- <span>{{ $item->likes_count ?? 0 }}</span> --}}
             </div>
 
             <div class="item-detail__action">
                 💬
-                {{-- <span>{{ $items->comments->count() }}</span> --}}
+                {{-- <span>{{ $item->comments->count() }}</span> --}}
             </div>
 
         </div>
@@ -58,7 +58,7 @@
             </h2>
 
             <p>
-                {{ $items->description }}
+                {{ $item->description }}
             </p>
         </div>
 
@@ -72,12 +72,12 @@
 
             <p>
                 <span class="item-detail__label">カテゴリー：</span>
-                {{ $items->category->name ?? '' }}
+                {{ $item->category->name ?? '' }}
             </p>
 
             <p>
                 <span class="item-detail__label">商品の状態：</span>
-                {{ $items->condition }}
+                {{ $item->condition }}
             </p>
 
         </div>
@@ -90,7 +90,7 @@
                 コメント
             </h2>
 
-            {{-- @foreach($items->comments as $comment)
+            {{-- @foreach($item->comments as $comment)
                 <div class="item-comment">
 
                     <div class="item-comment__user">
