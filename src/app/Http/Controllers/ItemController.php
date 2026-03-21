@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
+use App\Models\Category;
 
 class ItemController extends Controller
 {
@@ -26,15 +28,26 @@ class ItemController extends Controller
 
     public function create()
     {
-        return view('items.sell');
+        $categories = Category::get();
+        return view('items.sell', compact('categories'));
     }
 
-    public function store($item_id)
+    public function store(Request $request)
     {
-        $items = Item::select('id', 'name', 'image')
-            ->orderBy('created_at', 'desc')
-            ->get();
+        $imagePath = $request->file('image')->store('items', 'public');
+        
+        Item::create([
+            'user_id' => Auth::id(),
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'is_sold' => false,
+            'condition' => $request->condition,
+            'category_id' => $request->category_id,
+            'brand' => $request->brand,
+            'image' => $imagePath,
+        ]);
 
-        return view('item.index', compact('items'));
+        return Redirect('/');
     }
 }

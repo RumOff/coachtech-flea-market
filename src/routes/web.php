@@ -12,6 +12,8 @@ Route::middleware('auth')->group(function (){
     
     // 出品
     Route::get('/sell', [ItemController::class, 'create'])->name('items.create');
+    Route::post('/sell', [ItemController::class, 'store'])->name('items.store');
+
 
     // プロフィール
     Route::get('/mypage', [ProfileController::class, 'index'])->name('mypage.index');
