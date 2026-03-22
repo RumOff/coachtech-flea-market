@@ -21,7 +21,9 @@ class ItemController extends Controller
 
     public function show($item_id)
     {
-        $item = Item::findOrFail($item_id);
+        $item = Item::with(['comments.user'])
+            ->withCount('comments')
+            ->findOrFail($item_id);
 
         return view('items.show', compact('item'));
     }

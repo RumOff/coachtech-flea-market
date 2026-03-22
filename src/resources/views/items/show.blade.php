@@ -86,11 +86,11 @@
         {{-- コメント --}}
         <div class="item-detail__comments">
 
-            <h2 class="item-detail__section-title">
-                コメント
-            </h2>
+            <p class="item-detail__section-title">
+                コメント( {{ $item->comments->count() }} )
+            </p>
 
-            {{-- @foreach($item->comments as $comment)
+            @foreach($item->comments as $comment)
                 <div class="item-comment">
 
                     <div class="item-comment__user">
@@ -98,24 +98,26 @@
                     </div>
 
                     <div class="item-comment__text">
-                        {{ $comment->content }}
+                        {{ $comment->comment }}
                     </div>
 
+                    <div class="item-comment__text">
+                        {{ $comment->created_at->format('Y/m/d H:i') }}
+                    </div>
                 </div>
-            @endforeach --}}
-
-
-            {{-- コメント投稿 --}}
-            <form method="POST" action="/comments">
+            @endforeach
+            
+            <label class="item-detail__label">
+                商品へのコメント
+            </label>
+            <form  action="{{ route('comments.store', ['item_id' => $item->id]) }}" method="POST">
                 @csrf
 
-                <textarea 
-                    name="content"
-                    class="item-detail__comment-input"
-                    placeholder="商品へのコメント"></textarea>
+                <textarea name="comment" class="item-detail__comment-input">
+                </textarea>
 
-                <button class="item-detail__comment-button">
-                    送信する
+                <button type="submit" class="item-detail__comment-button">
+                    コメントを送信する
                 </button>
 
             </form>
