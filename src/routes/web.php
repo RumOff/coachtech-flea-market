@@ -5,6 +5,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
 Route::get('/item/{item_id}', [ItemController::class, 'show'])->name('items.show');
@@ -27,6 +28,10 @@ Route::middleware('auth')->group(function (){
 
     // コメント
     Route::post('/item/{item_id}/comments', [CommentController::class, 'store'])->name('comments.store');
+
+    // いいね
+    Route::post('/item/{item_id}/like', [LikeController::class, 'store'])->name('like.store');
+    Route::delete('/item/{item_id}/like', [LikeController::class, 'destroy'])->name('like.destroy');
 });
 
 

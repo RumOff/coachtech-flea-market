@@ -29,4 +29,26 @@ class Item extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function scopeDetail($query)
+    {
+        return $query
+            ->with(['comments.user',])
+            ->withCount([
+                'comments',
+                'likes',
+                ])
+            ->with([
+                'likes' => function ($query) {
+                    if (auth()->check()) {
+                        $query->where('user_id', auth()->id());
+                    }
+                }
+            ]);
+    }
 }

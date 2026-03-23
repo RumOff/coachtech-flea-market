@@ -31,19 +31,54 @@
 
         {{-- いいね・コメント --}}
         <div class="item-detail__actions">
-
             <div class="item-detail__action">
-                ❤️
-                {{-- <span>{{ $item->likes_count ?? 0 }}</span> --}}
+                @if($item->likes->isNotEmpty())
+                    {{-- いいね解除 --}}
+                    <form action="{{ route('like.destroy', ['item_id' => $item->id]) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit" class="action__img">
+                            <img 
+                                src="{{ asset('images/ハートロゴ_ピンク.png') }}" 
+                                alt="liked"
+                                class="action__img--like"
+                            >
+                        </button>
+                    </form>
+                @else
+                    {{-- いいね --}}
+                    <form action="{{ route('like.store', ['item_id' => $item->id]) }}" method="POST">
+                        @csrf
+
+                        <button type="submit" class="action__img">
+                            <img 
+                                src="{{ asset('images/ハートロゴ_デフォルト.png') }}" 
+                                alt="not liked"
+                                class="action__img--like"
+                            >
+                        </button>
+                    </form>
+                @endif
+
+                {{-- <div class="action__img">
+                    <img src="{{ $item->likes->isNotEmpty()
+                        ? asset('images/ハートロゴ_デフォルト.png')
+                        : asset('images/ハートロゴ_デフォルト.png') }}" alt="like_logo"  
+                        class="action__img--like"
+                    >
+                </div> --}}
+                
+                <span>{{ $item->likes_count }}</span>
             </div>
 
             <div class="item-detail__action">
-                💬
-                {{-- <span>{{ $item->comments->count() }}</span> --}}
+                <div class="action__img">
+                    <img src="{{ asset('images/ふきだしロゴ.png') }}" alt="comment_logo" class="action__img--like">
+                </div>
+                <span>{{ $item->comments_count }}</span>
             </div>
-
         </div>
-
 
         {{-- 購入ボタン --}}
         <button class="item-detail__buy">
