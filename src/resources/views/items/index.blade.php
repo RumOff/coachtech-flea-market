@@ -16,16 +16,20 @@
 
     <!-- 商品一覧 -->
     <div class="item__list">
-        @foreach($items as $item)
-        <div class="item__card">
-            <a href="/item/{{ $item->id }}" class="item__link">
-                <img src="{{ asset('storage/' . $item->image) }}" alt="item" class="item__img">
-                <p class="item__name">
-                    {{ $item->name }}
-                </p>
-            </a>
-        </div>
-        @endforeach
+        @if(isset($items))
+            @foreach($items as $item)
+            <div class="item__card">
+                <a href="/item/{{ $item->id }}" class="item__link">
+                    <img src="{{ asset('storage/' . $item->image) }}" alt="item" class="item__img">
+                    <p class="item__name">
+                        {{ $item->name }}
+                    </p>
+                </a>
+            </div>
+            @endforeach
+        @else
+            <p class="no-item">商品がありません</p>
+        @endif
     </div>
 
     @endsection

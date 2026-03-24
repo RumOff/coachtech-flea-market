@@ -22,6 +22,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/mypage/profile', [ProfileController::class, 'update'])->name('profile.update');
 
+
     // 商品購入
     Route::get('/purchase/{item_id}', [PurchaseController::class, 'create'])->name('purchase.create');
     Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'address'])->name('purchase.address');

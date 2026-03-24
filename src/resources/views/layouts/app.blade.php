@@ -45,7 +45,7 @@
           @endauth
 
           <li class="nav-list__item">
-            <a href="/mypage" class="nav-list__link">マイページ</a>
+            <a href="{{ route('mypage.index') }}" class="nav-list__link">マイページ</a>
           </li>
           <li class="nav-list__item">
             <a href="/sell" class="nav-list__link nav-list__link--sell">出品</a>

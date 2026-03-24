@@ -6,6 +6,22 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
+    public function index(Request $request)
+    {
+        $user = auth()->user();
+        $profile = $user->profile;
+
+        $page = $request->query('page');
+        
+        if ($page === 'buy'){
+            $items = $user->purchases;
+        }else{
+            $items = $user->items;
+        }
+
+        return view('mypage.index', compact('profile', 'items', 'page'));
+    }
+
     public function edit()
     {
         $profile = auth()->user()->profile;
