@@ -20,6 +20,7 @@ class CreateProfilesTable extends Migration
             $table->string('postal_code', 20);
             $table->string('address', 255);
             $table->string('building', 255)->nullable();
+            $table->string('avatar', 255);
             $table->timestamps();
         });
     }

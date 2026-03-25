@@ -32,15 +32,19 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $user = auth()->user();
-        $user->profile()->updateOrCreate(
-        ['user_id' => $user->id],
-        $request->only([
+
+        $data = $request->only([
             'user_name',
             'postal_code',
             'address',
             'building',
-            'avatar',
-        ])
+        ]);
+
+        $data['avatar'] = $request->file('avatar')->store('avatars', 'public');
+
+        $user->profile->updateOrCreate(
+            ['user_id' => $user->id],
+            $data
         );
         
         return redirect()->route('items.index');

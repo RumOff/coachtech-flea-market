@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\PurchaseController;
 
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
 Route::get('/item/{item_id}', [ItemController::class, 'show'])->name('items.show');
@@ -24,8 +25,9 @@ Route::middleware('auth')->group(function (){
 
 
     // 商品購入
-    Route::get('/purchase/{item_id}', [PurchaseController::class, 'create'])->name('purchase.create');
+    Route::get('/purchase/{item_id}', [PurchaseController::class, 'show'])->name('purchase.show');
     Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'address'])->name('purchase.address');
+    Route::post('/purchase/{item_id}', [PurchaseController::class, 'address'])->name('purchase.address');
 
     // コメント
     Route::post('/item/{item_id}/comments', [CommentController::class, 'store'])->name('comments.store');

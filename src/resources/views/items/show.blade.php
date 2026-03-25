@@ -81,10 +81,7 @@
         </div>
 
         {{-- 購入ボタン --}}
-        <button class="item-detail__buy">
-            購入する
-        </button>
-
+        <a href="/purchase/{item_id}" class="item-detail__button-buy">購入手続きへ</a>
 
         {{-- 商品説明 --}}
         <div class="item-detail__description">
@@ -92,7 +89,7 @@
                 商品説明
             </h2>
 
-            <p>
+            <p class='item-detail__description'>
                 {{ $item->description }}
             </p>
         </div>
@@ -105,14 +102,12 @@
                 商品情報
             </h2>
 
-            <p>
-                <span class="item-detail__label">カテゴリー：</span>
-                {{ $item->category->name ?? '' }}
+            <p class="item-detail__label">
+                カテゴリー：{{ $item->category->name ?? '' }}
             </p>
 
-            <p>
-                <span class="item-detail__label">商品の状態：</span>
-                {{ $item->condition }}
+            <p class="item-detail__label">
+                商品の状態：{{ $item->condition }}
             </p>
 
         </div>

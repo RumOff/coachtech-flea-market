@@ -34,6 +34,7 @@ class ItemController extends Controller
 
     public function store(Request $request)
     {
+        
         $imagePath = $request->file('image')->store('items', 'public');
         
         Item::create([
