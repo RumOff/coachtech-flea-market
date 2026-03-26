@@ -25,9 +25,11 @@ Route::middleware('auth')->group(function (){
 
 
     // 商品購入
-    Route::get('/purchase/{item_id}', [PurchaseController::class, 'show'])->name('purchase.show');
+    Route::get('/purchase/{item_id}', [PurchaseController::class, 'purchase'])->name('purchase');
+    Route::post('/purchase', [PurchaseController::class, 'store'])->name('purchase.store');
+
     Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'address'])->name('purchase.address');
-    Route::post('/purchase/{item_id}', [PurchaseController::class, 'address'])->name('purchase.address');
+    Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'update'])->name('purchase.update');
 
     // コメント
     Route::post('/item/{item_id}/comments', [CommentController::class, 'store'])->name('comments.store');

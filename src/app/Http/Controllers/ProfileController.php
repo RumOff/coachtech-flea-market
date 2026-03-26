@@ -42,7 +42,7 @@ class ProfileController extends Controller
 
         $data['avatar'] = $request->file('avatar')->store('avatars', 'public');
 
-        $user->profile->updateOrCreate(
+        $user->profile()->updateOrCreate(
             ['user_id' => $user->id],
             $data
         );
