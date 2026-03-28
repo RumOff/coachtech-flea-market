@@ -9,9 +9,9 @@
 <div class="item__container">
 
     <!-- タブ -->
-    <div class="item__tab">
-        <a href="/items" class="item__tab item__tab--active">おすすめ</a>
-        <a href="/mylist" class="item__tab item__tab--mylist">マイリスト</a>
+    <div class="item__tabs">
+        <a href="/" class="{{ $page === '' ? 'active' : '' }} item__tab">おすすめ</a>
+        <a href="/?tab=mylist" class="{{ $page === 'mylist' ? 'active' : '' }} item__tab">マイリスト</a>
     </div>
 
     <!-- 商品一覧 -->

@@ -8,7 +8,7 @@
 
     <div class="profile__container">
         <div class="profile__header">
-            <img src="{{ asset('storage/' . $profile->avatar ) ?? '/img/default.png' }}" alt="" class="profile__avatar">
+            <img src="{{ asset('storage/' . (optional($profile)->avatar ?? '/img/default.png')) }}" alt="" class="profile__avatar">
 
             <h1 class="profile__name">ユーザー名</h1>
 

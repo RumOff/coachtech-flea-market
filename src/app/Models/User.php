@@ -64,6 +64,11 @@ class User extends Authenticatable
         return $this->hasMany(Item::class);
     }
 
+    public function likedItems()
+    {
+        return $this->belongsToMany(Item::class, 'likes');
+    }
+
     // public function purchase()
     // {
     //     return $this->hasMany(Purchase::class);
