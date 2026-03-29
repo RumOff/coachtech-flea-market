@@ -6,16 +6,26 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
 use App\Models\Category;
-use App\Models\User;
+use App\Models\Condition;
 
 class ItemController extends Controller
 {
     public function index(Request $request)
     {
         $page = $request->query('tab');
-        $query = Item::select('id','name','image')
-            ->orderBy('created_at','desc');
-            
+        $keyword = $request->query('keyword');
+
+        // ベースクエリ
+        $query = Item::select('id', 'name', 'image')
+            ->orderBy('created_at', 'desc');
+
+        // 検索条件
+        if (!empty($keyword)) {
+            $query->where(function ($q) use ($keyword) {
+                $q->where('name', 'like', '%' . $keyword . '%');
+            });
+        }
+
         // ログイン時は自分の商品を除外
         if (auth()->check()) {
             $query->where('user_id', '!=', auth()->id());
@@ -24,9 +34,14 @@ class ItemController extends Controller
         // マイリストタブ
         if ($page === 'mylist') {
             $items = auth()->user()->likedItems()
-            ->select('items.id', 'name', 'image')
-            ->orderBy('items.created_at', 'desc')
-            ->get();
+                ->select('items.id', 'name', 'image')
+                ->when($keyword, function ($q) use ($keyword) {
+                    $q->where(function ($qq) use ($keyword) {
+                        $qq->where('name', 'like', '%' . $keyword . '%');
+                    });
+                })
+                ->orderBy('items.created_at', 'desc')
+                ->get();
         } else {
             // 通常タブ
             $items = $query->get();
@@ -45,21 +60,21 @@ class ItemController extends Controller
     public function create()
     {
         $categories = Category::get();
-        return view('items.sell', compact('categories'));
+        $conditions = Condition::get();
+        return view('items.sell', compact('categories', 'conditions'));
     }
 
     public function store(Request $request)
     {
-        
+
         $imagePath = $request->file('image')->store('items', 'public');
-        
         Item::create([
             'user_id' => Auth::id(),
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
             'is_sold' => false,
-            'condition' => $request->condition,
+            'condition_id' => $request->condition_id,
             'category_id' => $request->category_id,
             'brand' => $request->brand,
             'image' => $imagePath,

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Condition;
 
 class Item extends Model
 {
@@ -15,6 +16,7 @@ class Item extends Model
         'price',
         'description',
         'category_id',
+        'condition_id',
         'is_sold',
         'brand',
         'image',
@@ -23,6 +25,11 @@ class Item extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function condition()
+    {
+        return $this->belongsTo(Condition::class);
     }
 
     public function comments()
@@ -43,7 +50,11 @@ class Item extends Model
     public function scopeDetail($query)
     {
         return $query
-            ->with(['comments.user',])
+            ->with([
+                'comments.user',
+                'category',
+                'condition',
+                ])
             ->withCount([
                 'comments',
                 'likes',

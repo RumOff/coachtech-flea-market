@@ -10,8 +10,9 @@
 
     <!-- タブ -->
     <div class="item__tabs">
-        <a href="/" class="{{ $page === '' ? 'active' : '' }} item__tab">おすすめ</a>
-        <a href="/?tab=mylist" class="{{ $page === 'mylist' ? 'active' : '' }} item__tab">マイリスト</a>
+        <a href="{{ route('items.index', ['keyword' => request('keyword')]) }}" class="{{ $page === '' ? 'active' : '' }} item__tab">おすすめ</a>
+        <a href="{{ route('items.index', ['tab' => 'mylist', 'keyword' => request('keyword')]) }}" class="{{ $page === 'mylist' ? 'active' : '' }} item__tab">マイリスト</a>
+        <input type="hidden" name="tab" value="{{ request('tab') }}"> 
     </div>
 
     <!-- 商品一覧 -->

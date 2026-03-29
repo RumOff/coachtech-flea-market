@@ -20,7 +20,7 @@ class CreateItemsTable extends Migration
             $table->text('description');
             $table->integer('price');
             $table->boolean('is_sold');
-            $table->enum('condition', ['良好', '目立った傷や汚れなし', 'やや傷や汚れあり', '状態が悪い']);
+            $table->foreignId('condition_id')->constrained()->restrictOnDelete();
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->string('brand', 100);
             $table->string('image');

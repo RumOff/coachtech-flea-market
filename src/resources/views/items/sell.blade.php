@@ -37,13 +37,13 @@
           </div>
           
           <div class="sell-form__group">
-            <label for="category" class="sell-form__label">商品の状態</label>
-              <select name="category" id="category" class="sell-form__select">
-                <option value="">選択してください</option>
-                <option value="">良好</option>
-                <option value="">目立った傷や汚れなし</option>
-                <option value="">やや傷や汚れあり</option>
-                <option value="">状態が悪い</option>
+            <label for="condition_id" class="sell-form__label">商品の状態</label>
+              <select name="condition_id" id="condition_id" class="sell-form__select">
+                @foreach($conditions as $condition)
+                  <option value="{{ $condition->id }}">
+                    {{ $condition->name }}
+                  </option>
+                @endforeach
               </select>
             </div>
         </section>

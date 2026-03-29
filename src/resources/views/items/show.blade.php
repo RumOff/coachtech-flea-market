@@ -40,7 +40,7 @@
 
                         <button type="submit" class="action__img">
                             <img 
-                                src="{{ asset('images/ハートロゴ_ピンク.png') }}" 
+                                src="{{ asset('images/heart_logo_pink.png') }}" 
                                 alt="liked"
                                 class="action__img--like"
                             >
@@ -53,28 +53,20 @@
 
                         <button type="submit" class="action__img">
                             <img 
-                                src="{{ asset('images/ハートロゴ_デフォルト.png') }}" 
+                                src="{{ asset('images/heart_logo_default.png') }}" 
                                 alt="not liked"
                                 class="action__img--like"
                             >
                         </button>
                     </form>
                 @endif
-
-                {{-- <div class="action__img">
-                    <img src="{{ $item->likes->isNotEmpty()
-                        ? asset('images/ハートロゴ_デフォルト.png')
-                        : asset('images/ハートロゴ_デフォルト.png') }}" alt="like_logo"  
-                        class="action__img--like"
-                    >
-                </div> --}}
                 
                 <span>{{ $item->likes_count }}</span>
             </div>
 
             <div class="item-detail__action">
                 <div class="action__img">
-                    <img src="{{ asset('images/ふきだしロゴ.png') }}" alt="comment_logo" class="action__img--like">
+                    <img src="{{ asset('images/comment_logo.png') }}" alt="comment_logo" class="action__img--like">
                 </div>
                 <span>{{ $item->comments_count }}</span>
             </div>
@@ -107,7 +99,7 @@
             </p>
 
             <p class="item-detail__label">
-                商品の状態：{{ $item->condition }}
+                商品の状態：{{ $item->condition->name }}
             </p>
 
         </div>

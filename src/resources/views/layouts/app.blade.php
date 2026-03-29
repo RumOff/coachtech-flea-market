@@ -17,13 +17,19 @@
 
       {{-- ロゴ --}}
       <a class="header__logo" href="/">
-        <img src="{{ asset('images/COACHTECHヘッダーロゴ.png') }}" alt="logo" class="header__img">
+        <img src="{{ asset('images/COACHTECH_header_logo.png') }}" alt="logo" class="header__img">
       </a>
 
       {{-- 検索ボックス --}}
       <div class="header__search">
-        <form action="/search" method="GET">
-          <input type="text" name="keyword" class="header__search-box" placeholder="なにをお探しですか？">
+        <form action="{{ route('items.index') }}" method="GET">
+          <input 
+            type="text" 
+            name="keyword" 
+            value="{{ request('keyword') }}"
+            class="header__search-box" 
+            placeholder="なにをお探しですか？"
+          >
         </form>
       </div>  
 
