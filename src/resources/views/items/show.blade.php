@@ -135,7 +135,10 @@
             <form  action="{{ route('comments.store', ['item_id' => $item->id]) }}" method="POST">
                 @csrf
 
-                <textarea name="comment" class="item-detail__comment-input">
+                <textarea 
+                    name="comment" 
+                    class="item-detail__comment-input"
+                >{{ old('comment') }}
                 </textarea>
 
                 <button type="submit" class="item-detail__comment-button">
@@ -143,6 +146,11 @@
                 </button>
 
             </form>
+            <div class="item-detail__comment--error">
+                @error('comment')
+                    <p class="msg_error">{{ $message }}</p>
+                @enderror
+            </div>
 
         </div>
     </div>

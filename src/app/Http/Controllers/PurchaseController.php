@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Item;
 use App\Models\Purchase;
-use Illuminate\Support\Facades\Redirect;
+// use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\PurchaseRequest;
+use App\Http\Requests\AddressRequest;
 
 class PurchaseController extends Controller
 {
@@ -17,7 +19,7 @@ class PurchaseController extends Controller
         return view('purchase.purchase', compact('item'));
     }
 
-    public function store(Request $request)
+    public function store(PurchaseRequest $request)
     {
         DB::transaction(function () use ($request) {
 
@@ -51,7 +53,7 @@ class PurchaseController extends Controller
         return view('purchase.address', compact('profile', 'item_id'));
     }
 
-    public function update(Request $request, $item_id)
+    public function update(AddressRequest $request, $item_id)
     {
         
         $user = auth()->user();

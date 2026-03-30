@@ -20,11 +20,15 @@
                         支払方法
                     </h2>
                     <select name="payment" id="payment" class="purchase__select">
-                        <option value="credit">クレジットカード</option>
-                        <option value="convenience">コンビニ払い</option>
+                        <option value="">選択してください</option>
+                        <option value="credit" {{ old('payment') === 'credit' ? 'selected' : '' }}>クレジットカード</option>
+                        <option value="convenience" {{ old('payment') == 'convenience' ? 'selected' : '' }}>コンビニ払い</option>
                     </select>
-
-
+                    <div class="error">
+                        @error('payment')
+                            <p class="purchase__error">{{ $message }}</p>
+                        @enderror
+                    </div>
                 </div>
 
                 <div class="border-line"></div>
