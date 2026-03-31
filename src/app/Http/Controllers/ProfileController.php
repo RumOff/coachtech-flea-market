@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ProfileRequest;
 
 class ProfileController extends Controller
 {
@@ -29,7 +30,7 @@ class ProfileController extends Controller
         return view('mypage.profile', compact('profile'));
     }
 
-    public function update(Request $request)
+    public function update(ProfileRequest $request)
     {
         $user = auth()->user();
 
@@ -40,7 +41,10 @@ class ProfileController extends Controller
             'building',
         ]);
 
-        $data['avatar'] = $request->file('avatar')->store('avatars', 'public');
+        // プロフィール画像があれば保存
+        if ($request->hasFile('avatar')){
+            $data['avatar'] = $request->file('avatar')->store('avatars', 'public');
+        }
 
         $user->profile()->updateOrCreate(
             ['user_id' => $user->id],

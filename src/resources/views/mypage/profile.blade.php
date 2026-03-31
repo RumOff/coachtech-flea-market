@@ -30,7 +30,12 @@
             <label class="profile__label">
                 ユーザー名
             </label>
-            <input type="text" name="user_name" class="profile__input">
+            <input 
+                type="text" 
+                name="user_name" 
+                value="{{ old('user_name') }}"
+                class="profile__input"
+            >
             @error('user_name')
             <p class="profile__error">{{ $message }}</p>
             @enderror
@@ -41,7 +46,12 @@
             <label class="profile__label">
                 郵便番号
             </label>
-            <input type="text" name="postal_code" class="profile__input">
+            <input 
+                type="text" 
+                name="postal_code" 
+                value="{{ old('postal_code') }}"
+                class="profile__input"
+            >
             @error('postal_code')
             <p class="profile__error">{{ $message }}</p>
             @enderror
@@ -52,7 +62,12 @@
             <label class="profile__label">
                 住所
             </label>
-            <input type="text" name="address" class="profile__input">
+            <input 
+                type="text" 
+                name="address" 
+                value="{{ old('address') }}"
+                class="profile__input"
+            >
             @error('address')
             <p class="profile__error">{{ $message }}</p>
             @enderror
@@ -63,7 +78,12 @@
             <label class="profile__label">
                 建物名
             </label>
-            <input type="text" name="building" class="profile__input">
+            <input 
+                type="text" 
+                name="building" 
+                value="{{ old('building') }}"
+                class="profile__input"
+            >
             @error('building')
             <p class="profile__error">{{ $message }}</p>
             @enderror
