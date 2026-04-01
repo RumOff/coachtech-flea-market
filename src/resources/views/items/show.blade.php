@@ -135,11 +135,7 @@
             <form  action="{{ route('comments.store', ['item_id' => $item->id]) }}" method="POST">
                 @csrf
 
-                <textarea 
-                    name="comment" 
-                    class="item-detail__comment-input"
-                >{{ old('comment') }}
-                </textarea>
+                <textarea name="comment" class="item-detail__comment-input">{{ old('comment') }}</textarea>
 
                 <button type="submit" class="item-detail__comment-button">
                     コメントを送信する

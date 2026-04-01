@@ -33,7 +33,7 @@
             <input 
                 type="text" 
                 name="user_name" 
-                value="{{ old('user_name') }}"
+                value="{{ old('user_name', Auth::user()->name) }}"
                 class="profile__input"
             >
             @error('user_name')

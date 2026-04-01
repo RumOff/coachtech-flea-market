@@ -34,16 +34,14 @@ class CreateNewUser implements CreatesNewUsers
                 'min:8',
             ],
             'password_confirmation' => [
-                'required',
                 'same:password',
             ],
         ], [
             'name.required' => 'お名前を入力してください',
             'email.required' => 'メールアドレスを入力してください',
-            'email.email' => 'メールアドレスの形式が正しくありません',
+            'email.email' => 'メールアドレスはメール形式で入力してください',
             'password.required' => 'パスワードを入力してください',
             'password.min' => 'パスワードは8文字以上で入力してください',
-            'password_confirmation.required' => '確認用パスワードを入力してください',
             'password_confirmation.same' => 'パスワードと一致しません',
         ])->validate();
 

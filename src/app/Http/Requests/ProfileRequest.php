@@ -34,7 +34,7 @@ class ProfileRequest extends FormRequest
     public function messages()
     {
         return [
-            'avatar.image' => 'プロフィール画像には画像ファイルを選択してください',
+            'avatar.image' => 'プロフィール画像は画像ファイルを選択してください',
             'avatar.mimes' => 'プロフィール画像はJPEGまたはPNG形式のみアップロード可能です',
             'user_name.required' => 'ユーザー名を入力してください',
             'user_name.max' => 'ユーザー名は20文字以内で入力してください',

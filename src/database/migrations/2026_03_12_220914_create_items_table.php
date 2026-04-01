@@ -22,7 +22,7 @@ class CreateItemsTable extends Migration
             $table->boolean('is_sold');
             $table->foreignId('condition_id')->constrained()->restrictOnDelete();
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
-            $table->string('brand', 100);
+            $table->string('brand', 100)->nullable();
             $table->string('image');
             $table->timestamps();
         });

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
 use App\Models\Category;
 use App\Models\Condition;
+use App\Http\Requests\ExhibitionRequest;
 
 class ItemController extends Controller
 {
@@ -64,7 +65,7 @@ class ItemController extends Controller
         return view('items.sell', compact('categories', 'conditions'));
     }
 
-    public function store(Request $request)
+    public function store(ExhibitionRequest $request)
     {
 
         $imagePath = $request->file('image')->store('items', 'public');
