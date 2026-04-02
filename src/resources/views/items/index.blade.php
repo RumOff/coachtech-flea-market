@@ -25,6 +25,13 @@
                     <p class="item__name">
                         {{ $item->name }}
                     </p>
+                    <div class="item__sold">
+                    @if($item->is_sold)
+                        <p class="sold">
+                            SOLD
+                        </p>
+                    @endif
+                    </div>
                 </a>
             </div>
             @endforeach

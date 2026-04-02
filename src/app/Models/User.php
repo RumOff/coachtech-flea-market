@@ -9,6 +9,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 use App\Models\Profile;
+use App\Models\Comment;
+use App\Models\Item;
+use App\Models\Like;
 
 class User extends Authenticatable
 {
@@ -69,8 +72,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Item::class, 'likes');
     }
 
-    // public function purchase()
-    // {
-    //     return $this->hasMany(Purchase::class);
-    // }
+    public function purchases()
+    {
+        return $this->belongsToMany(Item::class, 'purchases', 'user_id', 'item_id');
+    }
 }

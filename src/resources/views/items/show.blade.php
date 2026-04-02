@@ -19,6 +19,13 @@
         <h1 class="item-detail__name">
             {{ $item->name }}
         </h1>
+        <div class="item-detail__sold">
+            @if($item->is_sold)
+                <p class="sold">
+                    SOLD
+                </p>
+            @endif
+        </div>
 
         <p class="item-detail__brand">
             {{ $item->brand }}

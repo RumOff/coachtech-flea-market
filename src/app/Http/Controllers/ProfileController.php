@@ -19,7 +19,6 @@ class ProfileController extends Controller
         }else{
             $items = $user->items;
         }
-
         return view('mypage.index', compact('profile', 'items', 'page'));
     }
 

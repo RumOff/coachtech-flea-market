@@ -17,7 +17,7 @@ class ItemController extends Controller
         $keyword = $request->query('keyword');
 
         // ベースクエリ
-        $query = Item::select('id', 'name', 'image')
+        $query = Item::select('id', 'name', 'image', 'is_sold')
             ->orderBy('created_at', 'desc');
 
         // 検索条件
@@ -34,8 +34,8 @@ class ItemController extends Controller
 
         // マイリストタブ
         if ($page === 'mylist') {
+            
             $items = auth()->user()->likedItems()
-                ->select('items.id', 'name', 'image')
                 ->when($keyword, function ($q) use ($keyword) {
                     $q->where(function ($qq) use ($keyword) {
                         $qq->where('name', 'like', '%' . $keyword . '%');
@@ -44,8 +44,14 @@ class ItemController extends Controller
                 ->orderBy('items.created_at', 'desc')
                 ->get();
         } else {
-            // 通常タブ
-            $items = $query->get();
+            // 通常タブ(いいね順)
+            $items = $query
+                ->withCount('likes')
+                ->when($keyword, function ($q) use ($keyword){
+                    $q->where('name', 'like', '%' . $keyword . '%');
+                })
+                ->orderBy('likes_count', 'desc')
+                ->get();
         }
 
         return view('items.index', compact('items', 'page'));
