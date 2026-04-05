@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Item;
 use App\Models\Purchase;
+use App\Models\Address;
 // use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\PurchaseRequest;
 use App\Http\Requests\AddressRequest;
@@ -16,7 +17,7 @@ class PurchaseController extends Controller
     {
         $item = Item::findOrfail($item_id);
 
-        return view('purchase.purchase', compact('item'));
+        return view('items.purchase', compact('item'));
     }
 
     public function store(PurchaseRequest $request)
@@ -29,10 +30,21 @@ class PurchaseController extends Controller
             if ($item->is_sold) {
                 abort(403, 'すでに購入されています');
             }
+            
+            $addressData = session('purchase_address');
+
+            // addressテーブルに保存
+            $address = Address::create([
+                'user_id' => auth()->id(),
+                'postal_code' => $addressData['postal_code'] ?? auth()->user()->profile->postal_code,
+                'address' => $addressData['address'] ?? auth()->user()->profile->addresss,
+                'building' => $addressData['building'] ?? auth()->user()->profile->building,
+            ]);
 
             Purchase::create([
                 'user_id' => auth()->id(),
                 'item_id' => $item->id,
+                'address_id' => $address->id,
                 'payment' => $request->payment,
                 'price' => $item->price,
             ]);
@@ -50,18 +62,17 @@ class PurchaseController extends Controller
     {
         $profile = auth()->user()->profile;
 
-        return view('purchase.address', compact('profile', 'item_id'));
+        return view('items.address', compact('profile', 'item_id'));
     }
 
     public function update(AddressRequest $request, $item_id)
     {
-        
-        $user = auth()->user();
-
-        $user->profile->update([
-            'postal_code' => $request->postal_code,
-            'address' => $request->address,
-            'building' => $request->building,
+        session([
+            'purchase_address' => [
+                'postal_code' => $request->postal_code,
+                'address' => $request->address,
+                'building' => $request->building,
+            ]
         ]);
 
         return redirect()->route('purchase', ['item_id' => $item_id]);

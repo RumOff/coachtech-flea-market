@@ -40,9 +40,13 @@
 
                     <a href="{{ route('purchase.address', ['item_id' => $item->id]) }}" class="purchase__link--update">変更する</a>
                     
+                    @php
+                        $address = session('purchase_address');
+                    @endphp
                     <p class="purchase__address">
-                        〒{{ Auth::user()->profile->postal_code }}<br>
-                        {{ Auth::user()->profile->address }}{{ Auth::user()->profile->building }}
+                        〒{{ $address['postal_code'] ?? Auth::user()->profile->postal_code }}<br>
+                        {{ $address['address'] ??Auth::user()->profile->address }}
+                        {{ $address['building'] ??Auth::user()->profile->building }}
                     </p>
 
                 </div>

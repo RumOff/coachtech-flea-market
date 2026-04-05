@@ -12,6 +12,7 @@ use App\Models\Profile;
 use App\Models\Comment;
 use App\Models\Item;
 use App\Models\Like;
+use App\Models\Address;
 
 class User extends Authenticatable
 {
@@ -75,5 +76,10 @@ class User extends Authenticatable
     public function purchases()
     {
         return $this->belongsToMany(Item::class, 'purchases', 'user_id', 'item_id');
+    }
+
+    public function addresses()
+    {
+        return $this->hasMany(Address::class);
     }
 }
