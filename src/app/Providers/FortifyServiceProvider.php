@@ -48,5 +48,9 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         Fortify::redirects('register', '/mypage/profile');
+
+        Fortify::verifyEmailView(function () {
+            return view('auth.verify-email');
+        });
     }
 }

@@ -19,7 +19,7 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
-        Validator::make($input, [
+        $validator = Validator::make($input, [
             'name' => ['required', 'string', 'max:20'],
             'email' => [
                 'required',
@@ -33,17 +33,31 @@ class CreateNewUser implements CreatesNewUsers
                 'string',
                 'min:8',
             ],
-            'password_confirmation' => [
-                'same:password',
-            ],
         ], [
             'name.required' => 'お名前を入力してください',
             'email.required' => 'メールアドレスを入力してください',
             'email.email' => 'メールアドレスはメール形式で入力してください',
             'password.required' => 'パスワードを入力してください',
             'password.min' => 'パスワードは8文字以上で入力してください',
-            'password_confirmation.same' => 'パスワードと一致しません',
-        ])->validate();
+        ]);
+
+        $validator->after(function ($validator) use ($input) {
+            
+            if (!empty($input['password']) && empty($input['password_confirmation'])) {
+                $validator->errors()->add('password_confirmation', '確認用パスワードを入力してください');
+            }
+
+            if(
+                !empty($input['password']) &&
+                !empty($input['password_confirmation']) &&
+                $input['password'] !== $input['password_confirmation']
+            ) {
+                $validator->errors()->add('password_confirmation',
+            'パスワードと一致しません');
+            }
+        });
+
+        $validator->validate();
 
         return User::create([
             'name' => $input['name'],

@@ -29,15 +29,24 @@
           <h2 class="sell-form__sub-title">商品の詳細</h2>
           <div class="sell-form__group">
             <label for="category_id" class="sell-form__label">カテゴリー</label>
-            <select name="category_id" id="category_id" class="sell-form__select">
-              <option value="">選択してください</option>
               @foreach ($categories as $category)
+                <label class="category__item">
+                  <input 
+                    type="checkbox"
+                    name="categories[]"
+                    value="{{ $category->id }}"
+                    class="category__checkbox"
+                  >
+                  <span class="category__label">
+                    {{ $category->name }}
+                  </span>
+
+                </label>
                 <option value="{{ $category->id }}">
                   {{ $category->name }}
                 </option>
               @endforeach
-            </select>
-            @error('category_id')
+            @error('categories')
             <p class="error">{{ $message }}</p>
             @enderror
           </div>

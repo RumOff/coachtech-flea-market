@@ -11,7 +11,7 @@ use App\Http\Controllers\PurchaseController;
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
 Route::get('/item/{item_id}', [ItemController::class, 'show'])->name('items.show');
 
-Route::middleware('auth')->group(function (){
+Route::middleware(['auth', 'verified'])->group(function (){
     
     // 出品
     Route::get('/sell', [ItemController::class, 'create'])->name('items.create');

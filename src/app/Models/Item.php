@@ -22,9 +22,9 @@ class Item extends Model
         'image',
     ];
 
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class);
     }
 
     public function condition()
@@ -52,7 +52,7 @@ class Item extends Model
         return $query
             ->with([
                 'comments.user',
-                'category',
+                'categories',
                 'condition',
                 ])
             ->withCount([

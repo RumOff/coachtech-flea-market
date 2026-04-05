@@ -73,19 +73,19 @@ class ItemController extends Controller
 
     public function store(ExhibitionRequest $request)
     {
-
         $imagePath = $request->file('image')->store('items', 'public');
-        Item::create([
+        $item = Item::create([
             'user_id' => Auth::id(),
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
             'is_sold' => false,
             'condition_id' => $request->condition_id,
-            'category_id' => $request->category_id,
             'brand' => $request->brand,
             'image' => $imagePath,
         ]);
+
+        $item->categories()->sync($request->categories);
 
         return Redirect('/');
     }

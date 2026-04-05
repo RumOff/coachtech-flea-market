@@ -102,8 +102,14 @@
             </h2>
 
             <p class="item-detail__label">
-                カテゴリー：{{ $item->category->name ?? '' }}
+                カテゴリー：
             </p>
+
+            @foreach($item->categories as $category)
+                <span class="category-tag">
+                    {{ $category->name }}
+                </span>
+            @endforeach
 
             <p class="item-detail__label">
                 商品の状態：{{ $item->condition->name }}
