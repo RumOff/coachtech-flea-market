@@ -21,40 +21,38 @@
       </a>
 
       {{-- 検索ボックス --}}
-      <div class="header__search">
-        <form action="{{ route('items.index') }}" method="GET">
-          <input 
-            type="text" 
-            name="keyword" 
-            value="{{ request('keyword') }}"
-            class="header__search-box" 
-            placeholder="なにをお探しですか？"
-          >
-        </form>
-      </div>  
+      <form action="{{ route('items.index') }}" method="GET" class="header__search">
+        <input 
+          type="text" 
+          name="keyword" 
+          value="{{ request('keyword') }}"
+          class="header__search-box" 
+          placeholder="なにをお探しですか？"
+        >
+      </form>
 
       {{-- ナビ --}}
       <nav class="header__nav">
-        <ul class="nav-list">
+        <ul class="header__list">
           
           @auth
-            <li class="nav-list__item">
-              <form action="/logout" method="post">
+            <li class="header__item">
+              <form action="{{ route('logout') }}" method="post">
                 @csrf
-                <button class="nav-list__button btn-logout">ログアウト</button>
+                <button class="header__button">ログアウト</button>
               </form>
             </li>
           @else
-              <li class="nav-list__item">
-                <a href="/login" class="nav-list__link">ログイン</a>
+              <li class="header__item">
+                <a href="{{ route('login') }}" class="header__link">ログイン</a>
               </li>
           @endauth
 
-          <li class="nav-list__item">
-            <a href="{{ route('mypage.index') }}" class="nav-list__link">マイページ</a>
+          <li class="header__item">
+            <a href="{{ route('mypage.index') }}" class="header__link">マイページ</a>
           </li>
-          <li class="nav-list__item">
-            <a href="/sell" class="nav-list__link nav-list__link--sell">出品</a>
+          <li class="header__item">
+            <a href="/sell" class="header__link header__link--sell">出品</a>
           </li>
 
         </ul>

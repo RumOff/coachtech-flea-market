@@ -1,0 +1,86 @@
+
+/* ヘッダー */
+.header {
+    background: black;
+    padding: 0 20px;
+}
+
+.header__inner {
+    max-width: 100%;
+    margin: 0;
+    padding: 10px 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* ロゴ */
+.header__logo {
+    display: block;
+}
+
+.header__img {
+    height: 30px;
+}
+
+/* 検索 */
+.header__search {
+    flex: 1;
+    margin: 0 auto;
+    max-width: 700px;
+    min-width: 200px;
+}
+
+.header__search-box {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 5px;
+    height: 40px;
+    
+}
+
+/* ナビ */
+.header__nav {
+    /* margin-left: auto; */
+}
+
+.header__list {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header__button{
+    background: none;
+    border: none;
+}
+
+.header__link {
+    text-decoration: none;
+    color: white;
+}
+
+.header__link--sell {
+    background: white;
+    color: black;
+    padding: 6px 12px;
+    border-radius: 5px;
+}
+
+/* スマホ対応 */
+@media (max-width: 768px){
+
+    .header__inner {
+        flex-wrap: wrap;
+    }
+
+    /* 検索を下に落とす */
+    .header__search {
+        width: 100%;
+        margin: 10px 0 0;
+        order: 3;
+        /* ←順番変更 */
+    }
+
+}

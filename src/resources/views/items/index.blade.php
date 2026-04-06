@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
+<link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
 <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 @endsection
 
@@ -10,9 +11,13 @@
 
     <!-- タブ -->
     <div class="item__tabs">
-        <a href="{{ route('items.index', ['keyword' => request('keyword')]) }}" class="{{ $page === '' ? 'active' : '' }} item__tab">おすすめ</a>
-        <a href="{{ route('items.index', ['tab' => 'mylist', 'keyword' => request('keyword')]) }}" class="{{ $page === 'mylist' ? 'active' : '' }} item__tab">マイリスト</a>
+
+        <a href="{{ route('items.index', ['keyword' => request('keyword')]) }}" class="{{ $page !== 'mylist' ? 'active' : '' }} item__tab">おすすめ</a>
+
+        <a href="{{ route('items.index', ['tab' => 'mylist', 'keyword' => request('keyword')]) }}" class="{{ $page === 'mylist' ? 'active' : '' }} item__tab item__tab--mylist">マイリスト</a>
+
         <input type="hidden" name="tab" value="{{ request('tab') }}"> 
+        
     </div>
 
     <!-- 商品一覧 -->
@@ -20,7 +25,7 @@
         @if(isset($items))
             @foreach($items as $item)
             <div class="item__card">
-                <a href="/item/{{ $item->id }}" class="item__link">
+                <a href="{{ route('items.show', $item->id) }}" class="item__link">
                     <img src="{{ asset('storage/' . $item->image) }}" alt="item" class="item__img">
                     <p class="item__name">
                         {{ $item->name }}
