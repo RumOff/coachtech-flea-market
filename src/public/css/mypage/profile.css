@@ -8,13 +8,14 @@
 
 .item__tab {
     text-decoration: none;
-    color:  black;
+    color: black;
 }
 
 .item__tab--mylist.active {
     font-weight: bold;
     color: red;
 }
+
 .item__tab.active {
     font-weight: bold;
     color: red;

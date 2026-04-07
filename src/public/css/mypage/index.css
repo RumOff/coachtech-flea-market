@@ -1,0 +1,38 @@
+.profile__container{
+    padding: 10px 0;
+}
+
+.profile__header {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.header__avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 50px 0 50px 225px;
+}
+
+.header__link--edit{
+    margin-left: auto;
+}
+
+.profile__tab {
+    text-decoration: none;
+    color: black;
+}
+
+.profile__tab.active {
+    font-weight: bold;
+    color: red;
+}
+
+/* 商品一覧 */
+.profile__item-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}

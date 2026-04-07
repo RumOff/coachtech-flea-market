@@ -68,6 +68,24 @@
     border-radius: 5px;
 }
 
+/* 商品カード */
+.item__card {
+    overflow: hidden;
+    background: #fff;
+}
+
+.item__link {
+    display: block;
+    text-decoration: none;
+    color: #333;
+}
+
+.item__img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
 /* スマホ対応 */
 @media (max-width: 768px){
 

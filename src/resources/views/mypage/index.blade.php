@@ -1,29 +1,32 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/index.css') }}">
+<link rel="stylesheet" href="{{ asset('css/mypage/index.css') }}">
+<link rel="stylesheet" href="{{ asset('css/common.css') }}">
 @endsection
 
 @section('content')
 
     <div class="profile__container">
         <div class="profile__header">
-            <img src="{{ asset('storage/' . (optional($profile)->avatar ?? '/img/default.png')) }}" alt="" class="profile__avatar">
+            <img src="{{ $profile && $profile->avatar 
+                        ? asset('storage/' . (optional($profile)->avatar)) 
+                        : asset('/img/default.png') }}" class="header__avatar">
 
-            <h1 class="profile__name">ユーザー名</h1>
+            <h1 class="header__name">{{ optional($profile)->user_name ?? '未設定' }}</h1>
 
-            <a href="{{ route('profile.edit') }}" class="profile__link--edit">プロフィールを編集</a>
+            <a href="{{ route('profile.edit') }}" class="header__link--edit">プロフィールを編集</a>
         </div>
 
-        <div class="profile__tag">
-            <a href="/mypage?page=sell" class="{{ $page === 'sell' ? 'active' : '' }}">出品した商品</a>
+        <div class="profile__tabs">
+            <a href="{{ route('mypage.index', ['page' => 'sell']) }}" class="profile__tab {{ $page === 'sell' ? 'active' : '' }}">出品した商品</a>
 
-            <a href="/mypage?page=buy" class="{{ $page === 'buy' ? 'active' : '' }}">購入した商品</a>
+            <a href="{{ route('mypage.index', ['page' => 'buy']) }} " class="profile__tab {{ $page === 'buy' ? 'active' : '' }}">購入した商品</a>
         </div>
 
-        <div class="border-line"></div>
+        <div class="profile__border-line"></div>
 
-        <div class="item__cards">
+        <div class="profile__item-cards">
             @if(isset($items))
                 @foreach ($items as $item)
                     <div class="item__card">

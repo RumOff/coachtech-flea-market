@@ -1,0 +1,29 @@
+.item__tabs {
+    display: flex;
+    margin-bottom: 60px;
+    height: 80px;
+    border-bottom: 1px solid black;
+    gap: 20px;
+}
+
+.item__tab {
+    text-decoration: none;
+    color:  black;
+}
+
+.item__tab--mylist.active {
+    font-weight: bold;
+    color: red;
+}
+.item__tab.active {
+    font-weight: bold;
+    color: red;
+}
+
+/* 商品一覧 */
+.item__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
