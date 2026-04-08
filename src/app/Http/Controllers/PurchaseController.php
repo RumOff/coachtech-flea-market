@@ -31,14 +31,16 @@ class PurchaseController extends Controller
                 abort(403, 'すでに購入されています');
             }
             
+            // addressesテーブルからデータを探してuserかどうか商品があるか
             $addressData = session('purchase_address');
 
+            // ない場合だけ保存
             // addressテーブルに保存
             $address = Address::create([
                 'user_id' => auth()->id(),
-                'postal_code' => $addressData['postal_code'] ?? auth()->user()->profile->postal_code,
-                'address' => $addressData['address'] ?? auth()->user()->profile->addresss,
-                'building' => $addressData['building'] ?? auth()->user()->profile->building,
+                'postal_code' => auth()->user()->profile->postal_code,
+                'address' => auth()->user()->profile->addresss,
+                'building' => auth()->user()->profile->building,
             ]);
 
             Purchase::create([

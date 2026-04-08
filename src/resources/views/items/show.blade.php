@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/index.css') }}">
+<link rel="stylesheet" href="{{ asset('css/items/show.css') }}">
 @endsection
 
 @section('content')
@@ -88,7 +88,7 @@
                 商品説明
             </h2>
 
-            <p class='item-detail__description'>
+            <p class='item-detail__description-text'>
                 {{ $item->description }}
             </p>
         </div>

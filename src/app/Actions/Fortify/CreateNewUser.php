@@ -42,7 +42,7 @@ class CreateNewUser implements CreatesNewUsers
         ]);
 
         $validator->after(function ($validator) use ($input) {
-            
+
             if (!empty($input['password']) && empty($input['password_confirmation'])) {
                 $validator->errors()->add('password_confirmation', '確認用パスワードを入力してください');
             }
