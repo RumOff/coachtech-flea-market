@@ -51,7 +51,7 @@ class Item extends Model
     {
         return $query
             ->with([
-                'comments.user',
+                'comments.user.profile',
                 'categories',
                 'condition',
                 ])
