@@ -1,0 +1,139 @@
+.sell-container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.sell__title {
+    font-size: 24px;
+    text-align: center;
+}
+
+.sell-form {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.sell-form__label {
+    font-weight: bold;
+}
+
+.sell-form__group {
+    margin-top: 20px;
+}
+
+.sell-form__group--condition {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.sell-form__upload-area {
+    border: 1px dotted;
+    padding: 40px;
+}
+.sell-form__file-input {
+    text-decoration: none;
+}
+
+.sell-form__file-input {
+    display: none;
+}
+
+.sell-form__file-label {
+    border: 2px solid;
+    border-color: #ff5555;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ff5555;
+    padding: 5px 15px;
+    margin: 110px;
+}
+
+/* 商品詳細 */
+.sell-form__sub-title {
+    font-size: 20px;
+    color: rgb(111, 111, 111);
+    border-bottom: 1px solid;
+}
+
+.category__checkbox {
+    display: none;
+}
+
+.category__item {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.category__label {
+    display: inline-block;
+    font-size: 13px;
+    color: #ff5555;
+    border: 1px solid;
+    border-radius: 15px;
+    padding: 2px 12px;
+    margin: 1px 10px;
+}
+
+.category__checkbox:checked + .category__label {
+    background-color: #ff5555;
+    color: white;
+}
+
+.select-wrapper {
+    position: relative;
+}
+
+.sell-form__select {
+    width: 100%;
+    padding: 7px 40px 7px 10px;
+
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+    background: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    color: rgb(111, 111, 111);
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.select-wrapper::after {
+    content: "▼";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 12px;
+    color: #666;
+}
+
+/* 商品名と説明 */
+.sell-form__group--name {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.sell-form__input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    border: none;
+    outline: none;
+    background: none;
+
+    width: 100%;
+    padding: 10px;
+
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+    font-size: 14px;
+}

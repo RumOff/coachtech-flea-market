@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/sell.css') }}">
+<link rel="stylesheet" href="{{ asset('css/items/sell.css') }}">
 @endsection
 
 @section('content')
@@ -14,10 +14,11 @@
 
         {{-- 商品画像 --}}
         <section class="sell-form__section">
-          <label class="sell-form__label">商品画像</label>
+          <p class="sell-form__label">商品画像</p>
           <div class="sell-form__upload-area">
-            <input type="file" name="image" id="image" class="sell-form__file-input">
-            <p>クリックしてファイルをアップロード</p>
+            <label class="sell-form__file-label">画像を選択する
+              <input type="file" name="image" id="image" class="sell-form__file-input">
+            </label>
             @error('image')
             <p class="error">{{ $message }}</p>
             @enderror
@@ -42,25 +43,24 @@
                   </span>
 
                 </label>
-                <option value="{{ $category->id }}">
-                  {{ $category->name }}
-                </option>
               @endforeach
             @error('categories')
             <p class="error">{{ $message }}</p>
             @enderror
           </div>
           
-          <div class="sell-form__group">
+          <div class="sell-form__group sell-form__group--condition">
             <label for="condition_id" class="sell-form__label">商品の状態</label>
-              <select name="condition_id" id="condition_id" class="sell-form__select">
-                <option value="">選択してください</option>
-                @foreach($conditions as $condition)
-                  <option value="{{ $condition->id }}">
-                    {{ $condition->name }}
-                  </option>
-                @endforeach
-              </select>
+              <div class="select-wrapper">
+                <select name="condition_id" id="condition_id" class="sell-form__select">
+                  <option value="">選択してください</option>
+                  @foreach($conditions as $condition)
+                    <option value="{{ $condition->id }}">
+                      {{ $condition->name }}
+                    </option>
+                  @endforeach
+                </select>
+              </div>
               @error('condition_id')
             <p class="error">{{ $message }}</p>
             @enderror
@@ -70,7 +70,7 @@
         {{-- 商品名と説明 --}}
         <section class="sell-form__section">
           <h2 class="sell-form__sub-title">商品名と説明</h2>
-          <div class="sell-form__group">
+          <div class="sell-form__group sell-form__group--name">
             <label for="name" class="sell-form__label">商品名</label>
             <input type="text" name="name" id="name" class="sell-form__input">
             @error('name')
@@ -78,12 +78,12 @@
             @enderror
           </div>
 
-          <div class="sell-form__group">
+          <div class="sell-form__group sell-form__group--name">
             <label for="brand" class="sell-form__label">ブランド名</label>
             <input type="text" name="brand" id="brand" class="sell-form__input">
           </div>
 
-          <div class="sell-form__group">
+          <div class="sell-form__group sell-form__group--name">
             <label for="description" class="sell-form__label">商品の説明</label>
             <textarea name="description" id="description" rows="5" class="sell-form__textarea" ></textarea>
             @error('description')
@@ -91,7 +91,7 @@
             @enderror
           </div>
 
-          <div class="sell-form__group">
+          <div class="sell-form__group sell-form__group--name">
             <label for="price" class="sell-form__label">販売価格</label>
             <div class="sell-form__price-input-wrap">
               <input type="number" name="price" id="price" class="sell-form__input" placeholder="¥">
@@ -105,7 +105,7 @@
 
         {{-- 送信ボタン --}}
         <div class="sell-form__btn-area">
-          <button type="submit" class="sell-form__btn-submit">出品する</button>
+          <button type="submit" class="btn-red sell-form__btn-submit">出品する</button>
         </div>
 
       </form>
