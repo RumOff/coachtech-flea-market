@@ -16,7 +16,7 @@
         <section class="sell-form__section">
           <p class="sell-form__label">商品画像</p>
           <div class="sell-form__upload-area">
-            <label class="sell-form__file-label">画像を選択する
+            <label class="sell-form__file-label btn-select">画像を選択する
               <input type="file" name="image" id="image" class="sell-form__file-input">
             </label>
             @error('image')

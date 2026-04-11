@@ -1,5 +1,5 @@
 .profile__container{
-    padding: 10px 0;
+    padding: 0 30px;
 }
 
 .profile__header {
@@ -13,21 +13,39 @@
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
-    margin: 50px 0 50px 225px;
+    margin: 30px 0 30px 225px;
+}
+
+.header__name {
+    font-size: 24px;
 }
 
 .header__link--edit{
     margin-left: auto;
 }
 
+.profile__tabs {
+    display: flex;
+    gap: 30px;
+    margin: 0 0 1px 20px;
+}
+
 .profile__tab {
     text-decoration: none;
     color: black;
+    font-size: 15px;
 }
 
 .profile__tab.active {
     font-weight: bold;
     color: red;
+}
+
+.profile__border-line {
+    border: 1px solid;
+    border-color: black;
+    margin-bottom: 30px;
+    width: 1200px;
 }
 
 /* 商品一覧 */
@@ -36,3 +54,4 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
+

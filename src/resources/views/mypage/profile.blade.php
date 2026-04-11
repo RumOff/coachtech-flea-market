@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div class="profile">
+<div class="profile__container">
 
     <h1 class="profile__title">
         プロフィール設定
@@ -18,8 +18,11 @@
 
         {{-- プロフィール画像 --}}
         <div class="profile__img">
-            <img src="{{ Auth::user()->avatar ?? '/img/default.png' }}" alt="" class="profile__avatar">
-            <label for="avatar" class="profile__upload-btn">
+            <img src="{{ $profile && $profile->avatar 
+                        ? asset('storage/' . (optional($profile)->avatar)) 
+                        : asset('/img/default.png') }}" class="header__avatar">
+
+            <label for="avatar" class="profile__upload-btn btn-select">
                 画像を選択
             </label>
             <input type="file" name="avatar" id="avatar" hidden>
@@ -33,7 +36,7 @@
             <input 
                 type="text" 
                 name="user_name" 
-                value="{{ old('user_name', Auth::user()->name) }}"
+                value="{{ old('user_name', $profile->user_name ?? '') }}"
                 class="profile__input"
             >
             @error('user_name')
@@ -49,7 +52,7 @@
             <input 
                 type="text" 
                 name="postal_code" 
-                value="{{ old('postal_code') }}"
+                value="{{ old('postal_code', $profile->postal_code ?? '') }}"
                 class="profile__input"
             >
             @error('postal_code')
@@ -65,7 +68,7 @@
             <input 
                 type="text" 
                 name="address" 
-                value="{{ old('address') }}"
+                value="{{ old('address', $profile->address ?? '')  }}"
                 class="profile__input"
             >
             @error('address')
@@ -81,7 +84,7 @@
             <input 
                 type="text" 
                 name="building" 
-                value="{{ old('building') }}"
+                value="{{ old('building', $profile->building ?? '') }}"
                 class="profile__input"
             >
             @error('building')
@@ -89,7 +92,7 @@
             @enderror
         </div>
 
-        <button type="submit" class="profile__btn">
+        <button type="submit" class="btn-red profile__btn">
             更新する
         </button>
      

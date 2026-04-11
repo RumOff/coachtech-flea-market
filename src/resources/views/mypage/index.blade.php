@@ -15,7 +15,7 @@
 
             <h1 class="header__name">{{ optional($profile)->user_name ?? '未設定' }}</h1>
 
-            <a href="{{ route('profile.edit') }}" class="header__link--edit">プロフィールを編集</a>
+            <a href="{{ route('profile.edit') }}" class="header__link--edit btn-select">プロフィールを編集</a>
         </div>
 
         <div class="profile__tabs">

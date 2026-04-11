@@ -8,7 +8,7 @@
 .header__inner {
     max-width: 100%;
     margin: 0;
-    padding: 10px 20px;
+    padding: 0px 20px;
 
     display: flex;
     align-items: center;
@@ -21,7 +21,7 @@
 }
 
 .header__img {
-    height: 30px;
+    width: 200px;
 }
 
 /* 検索 */
@@ -35,9 +35,8 @@
 .header__search-box {
     width: 100%;
     padding: 8px 12px;
-    border-radius: 5px;
-    height: 40px;
-    
+    border-radius: 4px;
+    height: 30px;
 }
 
 /* ナビ */
@@ -55,19 +54,21 @@
     background: none;
     border: none;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .header__link {
     text-decoration: none;
     color: white;
+    font-size: 14px;
 }
 
 .header__link--sell {
     background: white;
     color: black;
-    padding: 6px 12px;
-    border-radius: 5px;
+    padding: 2px 13px;
+    border-radius: 2px;
+    font-size: 14px;
 }
 
 /* 商品カード */
@@ -100,6 +101,19 @@
     font: inherit;
     cursor: pointer;
     font-size: 14px;
+    width: 100%;
+}
+
+.btn-select {
+    border: 2px solid;
+    border-color: #ff5555;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ff5555;
+    padding: 5px 15px;
+    margin: 10px 30px;
+    text-decoration: none;
 }
 
 /* スマホ対応 */
