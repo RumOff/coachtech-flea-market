@@ -20,6 +20,8 @@
         
     </div>
 
+    <div class="item__border"></div>
+
     <!-- 商品一覧 -->
     <div class="item__list">
         @if(isset($items))
@@ -27,15 +29,16 @@
             <div class="item__card">
                 <a href="{{ route('items.show', $item->id) }}" class="item__link">
                     <img src="{{ asset('storage/' . $item->image) }}" alt="item" class="item__img">
-                    <p class="item__name">
-                        {{ $item->name }}
-                    </p>
-                    <div class="item__sold">
-                    @if($item->is_sold)
-                        <p class="sold">
-                            SOLD
+
+                    <div class="item__box">
+                        <p class="item__name">
+                            {{ $item->name }}
                         </p>
-                    @endif
+                        @if($item->is_sold)
+                            <p class="sold">
+                                SOLD
+                            </p>
+                        @endif
                     </div>
                 </a>
             </div>

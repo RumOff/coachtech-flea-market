@@ -17,12 +17,17 @@ class PurchaseController extends Controller
     {
         $item = Item::findOrfail($item_id);
 
-        return view('items.purchase', compact('item'));
+        $address = Address::where('user_id', auth()->id())
+            ->where('item_id', $item_id)
+            ->latest()
+            ->first();
+
+        return view('items.purchase', compact('item', 'address'));
     }
 
-    public function store(PurchaseRequest $request)
+    public function store(PurchaseRequest $request, $item_id)
     {
-        DB::transaction(function () use ($request) {
+        DB::transaction(function () use ($request, $item_id) {
 
             $item = Item::LockForUpdate()->findOrFail($request->item_id);
 
@@ -31,22 +36,27 @@ class PurchaseController extends Controller
                 abort(403, 'すでに購入されています');
             }
             
-            // addressesテーブルからデータを探してuserかどうか商品があるか
-            $addressData = session('purchase_address');
+            // addressesテーブルからデータを探す
+            $addressData = Address::where('user_id', auth()->id())
+                ->where('item_id', $item_id)
+                ->first();
 
-            // ない場合だけ保存
-            // addressテーブルに保存
-            $address = Address::create([
-                'user_id' => auth()->id(),
-                'postal_code' => auth()->user()->profile->postal_code,
-                'address' => auth()->user()->profile->addresss,
-                'building' => auth()->user()->profile->building,
-            ]);
+            // addressesテーブルからデータない場合
+            // プロフィールの住所を保存
+            if (!$addressData) {
+                $addressData = Address::create([
+                    'user_id' => auth()->id(),
+                    'item_id' => $item_id,
+                    'postal_code' => auth()->user()->profile->postal_code,
+                    'address' => auth()->user()->profile->addresss,
+                    'building' => auth()->user()->profile->building,
+                ]);
+            }
 
             Purchase::create([
                 'user_id' => auth()->id(),
                 'item_id' => $item->id,
-                'address_id' => $address->id,
+                'address_id' => $addressData->id,
                 'payment' => $request->payment,
                 'price' => $item->price,
             ]);
@@ -69,12 +79,12 @@ class PurchaseController extends Controller
 
     public function update(AddressRequest $request, $item_id)
     {
-        session([
-            'purchase_address' => [
-                'postal_code' => $request->postal_code,
-                'address' => $request->address,
-                'building' => $request->building,
-            ]
+        Address::updateOrCreate([
+            'user_id' => auth()->id(),
+            'item_id' => $item_id,
+            'postal_code' => $request->postal_code,
+            'address' => $request->address,
+            'building' => $request->building,
         ]);
 
         return redirect()->route('purchase', ['item_id' => $item_id]);

@@ -24,7 +24,7 @@ Route::middleware(['auth', 'verified'])->group(function (){
 
     // 商品購入
     Route::get('/purchase/{item_id}', [PurchaseController::class, 'purchase'])->name('purchase');
-    Route::post('/purchase', [PurchaseController::class, 'store'])->name('purchase.store');
+    Route::post('/purchase/{item_id}', [PurchaseController::class, 'store'])->name('purchase.store');
 
     Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'address'])->name('purchase.address');
     Route::post('/purchase/address/{item_id}', [PurchaseController::class, 'update'])->name('purchase.update');

@@ -1,0 +1,91 @@
+.purchase__container {
+    display: flex;
+}
+
+/* 左側 */
+.purchase__left {
+    flex: 7;
+    margin: 50px 40px;
+}
+
+.purchase__box {
+    display: flex;
+}
+
+.purchase__box--product-name {
+    display: flex;
+    flex-direction: column;
+    margin: 0 40px;
+}
+
+.purchase__img {
+    width: 200px;
+
+}
+
+.purchase__title {
+    font-size: 25px;
+    margin: 0 ;
+}
+
+.parchase__price {
+    font-size: 20px;
+}
+
+.border-line {
+    border-bottom: 1px solid;
+    margin: 20px 0;
+}
+
+.purchase__label {
+    font-size: 16px;
+    margin: 0 20px;
+}
+
+.purchase__select {
+    margin: 30px 0 20px 60px;
+    width: 200px;
+}
+
+.purchase__pay-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.purchase__link--update {
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.purchase__address {
+    margin: 20px 0 30px 60px;
+}
+
+/* 右側 */
+.purchase__right {
+    flex: 3;
+    margin: 50px 60px 0 20px;
+}
+
+.purchase__box--price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.purchase__check {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid;
+    margin-bottom: 20px;
+}
+
+.purchase__label-check {
+    font-size: 15px;
+    text-align: center;
+}
+
+.border-line--check {
+    margin: 0;
+}

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/index.css') }}">
+<link rel="stylesheet" href="{{ asset('css/items/purchase.css') }}">
 @endsection
 
 @section('content')
@@ -10,9 +10,16 @@
     @csrf
         <div class="purchase__container">
             <div class="purchase__left">
-                <img src="{{ asset('storage/' . $item->image) }}" alt="item-image" class="purchase__img">
-                <h1 class="purchase__title">{{ $item->name }}</h1>
-                <p class="parchase__price">¥{{ number_format($item->price) }}</p>
+
+                <div class="purchase__box">
+                    <img src="{{ asset('storage/' . $item->image) }}" alt="item-image" class="purchase__img">
+                    
+                    <div class="purchase__box--product-name">
+                        <h1 class="purchase__title">{{ $item->name }}</h1>
+                        <p class="parchase__price">¥{{ number_format($item->price) }}</p>
+                    </div>
+                </div>
+
                 <div class="border-line"></div>
                 
                 <div class="purchase__pay">
@@ -34,15 +41,14 @@
                 <div class="border-line"></div>
 
                 <div class="purchase__pay">
-                    <h2 class="purchase__label">
-                        配送先
-                    </h2>
+                    <div class="purchase__pay-box">
+                        <h2 class="purchase__label">
+                            配送先
+                        </h2>
 
-                    <a href="{{ route('purchase.address', ['item_id' => $item->id]) }}" class="purchase__link--update">変更する</a>
-                    
-                    @php
-                        $address = session('purchase_address');
-                    @endphp
+                        <a href="{{ route('purchase.address', ['item_id' => $item->id]) }}" class="purchase__link--update">変更する</a>
+                    </div>
+
                     <p class="purchase__address">
                         〒{{ $address['postal_code'] ?? Auth::user()->profile->postal_code }}<br>
                         {{ $address['address'] ??Auth::user()->profile->address }}
@@ -55,20 +61,25 @@
 
             </div>
 
-
             <div class="purchase__right">
-                <div class="purchase__box">
+                <div class="purchase__check">
+                    <div class="purchase__box--price">
+                        <label for="" class="purchase__label-check">商品代金</label>
+                        <p class="purchase__">
+                            {{ number_format($item->price) }}円
+                        </p>
+                    </div>
+                    <div class="border-line border-line--check"></div>
+                    <div class="purchase__box--price">
+                        <label for="" class="purchase__label-check">支払い方法</label>
 
-                    <label for="" class="purchase__price">商品代金</label>
-                    <p class="purchase__">
-                        {{ number_format($item->price) }}円
-                    </p>
-
-                    <label for="" class="purchase__pay">支払い方法</label>
-                    <p class="purchase__"></p>
+                        <p class="purchase__">aaa</p>
                         <input type="hidden" name="item_id" value="{{ $item->id }}">
-                        <button type="submit" class="purchase__button--buy">購入する</button>
-                </div>
+                    </div>
+                </div>    
+                
+                <button type="submit" class="purchase__button--buy btn-red">購入する</button>
+                
             </div>
         </div>
     </form>    

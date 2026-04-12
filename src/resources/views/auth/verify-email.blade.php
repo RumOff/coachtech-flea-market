@@ -1,8 +1,24 @@
-<h1>メール認証してください</h1>
 
-<p>登録したメールアドレスに認証リンクを送っています。</p>
+@extends('layouts.app')
 
-<form method="POST" action="{{ route('verification.send') }}">
-    @csrf
-    <button type="submit">認証メールを再送信</button>
-</form>
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/auth/verify-email.css') }}">
+@endsection
+
+@section('content')
+
+<div class="mail__container">
+    <p class="msg">登録していただいたメールアドレスに認証メールを送付しました。 <br>
+    メール認証を完了してください。</p>
+
+    <a href="http://localhost:8025" target="_blank" class="btn-check">
+        認証はこちらから
+    </a>
+
+    <form method="POST" action="{{ route('verification.send') }}">
+        @csrf
+        <button type="submit" class="btn-resend">認証メールを再送信</button>
+    </form>
+</div>
+
+@endsection

@@ -2,20 +2,23 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/mypage/index.css') }}">
-<link rel="stylesheet" href="{{ asset('css/common.css') }}">
 @endsection
 
 @section('content')
 
     <div class="profile__container">
         <div class="profile__header">
-            <img src="{{ $profile && $profile->avatar 
-                        ? asset('storage/' . (optional($profile)->avatar)) 
-                        : asset('/img/default.png') }}" class="header__avatar">
+            <div class="profile__left">
+                <img src="{{ $profile && $profile->avatar 
+                            ? asset('storage/' . (optional($profile)->avatar)) 
+                            : asset('/img/default.png') }}" class="header__avatar">
 
-            <h1 class="header__name">{{ optional($profile)->user_name ?? '未設定' }}</h1>
+                <h1 class="header__name">{{ optional($profile)->user_name ?? '未設定' }}</h1>
+            </div>
 
-            <a href="{{ route('profile.edit') }}" class="header__link--edit btn-select">プロフィールを編集</a>
+            <div class="profile__right">
+                <a href="{{ route('profile.edit') }}" class="header__link--edit btn-select">プロフィールを編集</a>
+            </div>
         </div>
 
         <div class="profile__tabs">

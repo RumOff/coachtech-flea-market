@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/index.css') }}">
+<link rel="stylesheet" href="{{ asset('css/items/address.css') }}">
 @endsection
 
 @section('content')
@@ -20,7 +20,7 @@
             <label class="address__label">
                 郵便番号
             </label>
-            <input type="text" name="postal_code" class="address__input" value="{{ old('postal_code') }}">
+            <input type="text" name="postal_code" class="address__input" value="{{ old('postal_code', $profile->postal_code ?? '') }}">
             @error('postal_code')
             <p class="address__error">{{ $message }}</p>
             @enderror
@@ -31,7 +31,7 @@
             <label class="address__label">
                 住所
             </label>
-            <input type="text" name="address" class="address__input" value="{{ old('address') }}">
+            <input type="text" name="address" class="address__input" value="{{ old('address', $profile->address ?? '') }}">
             @error('address')
             <p class="address__error">{{ $message }}</p>
             @enderror
@@ -42,10 +42,10 @@
             <label class="address__label">
                 建物名
             </label>
-            <input type="text" name="building" class="address__input">
+            <input type="text" name="building" class="address__input" value="{{ old('building', $profile->building ?? '') }}">
         </div>
 
-        <button type="submit" class="address__btn">
+        <button type="submit" class="btn-red address__btn">
             更新する
         </button>
      

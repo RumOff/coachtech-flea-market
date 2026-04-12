@@ -1,0 +1,40 @@
+.login-form__container {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.login-form__title {
+    font-size: 16px;
+    text-align: center;
+    margin: 40px;
+}
+.form__group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form__label--item {
+    font-size: 13px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.form__input--text {
+    width: 100%;
+    margin: 0 0 10px 0;
+}
+
+.form__button-submit {
+    margin: 20px auto;
+}
+
+.parent {
+    text-align: center;
+}
+
+.register__button {
+    text-decoration: none;
+    font-size: 13px;
+    align-items: center;
+}
+
