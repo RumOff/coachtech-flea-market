@@ -23,7 +23,7 @@
             <div class="item-detail__sold">
                 @if($item->is_sold)
                     <p class="sold">
-                        SOLD
+                        Sold
                     </p>
                 @endif
             </div>
