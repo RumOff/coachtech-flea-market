@@ -20,7 +20,7 @@
         <div class="profile__img">
             <img src="{{ $profile && $profile->avatar 
                         ? asset('storage/' . (optional($profile)->avatar)) 
-                        : asset('/img/default.png') }}" class="header__avatar">
+                        : asset('/images/default.png') }}" class="header__avatar">
 
             <label for="avatar" class="profile__upload-btn btn-select">
                 画像を選択

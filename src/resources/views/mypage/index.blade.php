@@ -11,7 +11,7 @@
             <div class="profile__left">
                 <img src="{{ $profile && $profile->avatar 
                             ? asset('storage/' . (optional($profile)->avatar)) 
-                            : asset('/img/default.png') }}" class="header__avatar">
+                            : asset('/images/default.png') }}" class="header__avatar">
 
                 <h1 class="header__name">{{ optional($profile)->user_name ?? '未設定' }}</h1>
             </div>

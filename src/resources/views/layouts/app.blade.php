@@ -33,8 +33,9 @@
 
       {{-- ナビ --}}
       <nav class="header__nav">
-        <ul class="header__list">
+        <ul class="header__list {{ request()->is('login') || request()->is('register') ? 'hidden' : '' }}">
           
+          {{-- ログインの時のみ表示 --}}
           @auth
             <li class="header__item">
               <form action="{{ route('logout') }}" method="post">
