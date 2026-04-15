@@ -34,7 +34,6 @@ class ItemController extends Controller
 
         // マイリストタブ
         if ($page === 'mylist') {
-            
             $items = auth()->user()->likedItems()
                 ->when($keyword, function ($q) use ($keyword) {
                     $q->where(function ($qq) use ($keyword) {

@@ -5,43 +5,49 @@
 @endsection
 
 @section('content')
-<div class="login-form__container">
+<div class="form__container">
   
-  <form class="login-form" action="/login" method="post">
+  <form class="form" action="/login" method="post">
     @csrf
-      <h1 class="login-form__title">ログイン</h1>
+    <h1 class="form__title">
+      ログイン
+    </h1>
 
     <div class="form__group">
       <p class="form__label--item">メールアドレス</p>
       <div class="form__group-content">
-        <div class="form__input--text">
+        <div class="form__input">
+
           <input type="email" name="email" value="{{ old('email') }}"
-          class="form__input--text />
-        <div class="form__error">
-          @error('email')
-          {{ $message }}
-          @enderror
-        </div>
+          class="form__input--text" />
+          
+          <p class="error">
+            @error('email'){{ $message }}@enderror
+          </p>
+      
        </div> 
     </div>
 
     <div class="form__group">
       <p class="form__label--item">パスワード</p>
       <div class="form__group-content">
-        <div class="form__input--text">
-          <input type="password" name="password" class="form__input--text />
-        </div>
-        <div class="form__error">
-          @error('password')
-          {{ $message }}
-          @enderror
+        <div class="form__input">
+
+          <input type="password" name="password" class="form__input--text" />
+
+          <p class="error">
+            @error('password'){{ $message }}@enderror
+          </p>
+
         </div>
       </div>
     </div>
-    <div class="form__button">
+
+    <div class="login-form__button">
       <button class="form__button-submit btn-red" type="submit">ログイン</button>
     </div>
-    <div class="parent">
+    
+    <div class="login-parent">
       <a class="register__button" href="/register">会員登録の方はこちら</a>
     </div>
 

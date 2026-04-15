@@ -65,26 +65,28 @@ class PurchaseController extends Controller
 
             $item = Item::lockForUpdate()->findOrFail($request->item_id);
 
-            if ($item->is_sold) {
-                abort(403, 'すでに購入されています');
-            }
+            // addressesテーブルからデータを探す
+            $addressData = Address::where('user_id', auth()->id())
+                ->where('item_id', $item->id)
+                ->first();
 
-            $addressData = Address::firstOrCreate(
-                [
+            // addressesテーブルからデータない場合
+            // プロフィールの住所を保存
+            if (!$addressData) {
+                $addressData = Address::create([
                     'user_id' => auth()->id(),
                     'item_id' => $item->id,
-                ],
-                [
                     'postal_code' => auth()->user()->profile->postal_code,
                     'address' => auth()->user()->profile->address,
                     'building' => auth()->user()->profile->building,
-                ]
-            );
+                ]);
+            }
 
             Purchase::create([
                 'user_id' => auth()->id(),
                 'item_id' => $item->id,
                 'address_id' => $addressData->id,
+                'payment' => 'card',
                 'price' => $item->price,
             ]);
 
@@ -95,34 +97,12 @@ class PurchaseController extends Controller
 
         return redirect()->route('mypage.index');
 
-        // addressesテーブルからデータを探す
-        $addressData = Address::where('user_id', auth()->id())
-            ->where('item_id', $item_id)
-            ->first();
+    }
 
-        // addressesテーブルからデータない場合
-        // プロフィールの住所を保存
-        if (!$addressData) {
-            $addressData = Address::create([
-                'user_id' => auth()->id(),
-                'item_id' => $item_id,
-                'postal_code' => auth()->user()->profile->postal_code,
-                'address' => auth()->user()->profile->address,
-                'building' => auth()->user()->profile->building,
-            ]);
-        }
-
-        Purchase::create([
-            'user_id' => auth()->id(),
-            'item_id' => $item->id,
-            'address_id' => $addressData->id,
-            'payment' => $request->payment,
-            'price' => $item->price,
-        ]);
-
-        $item->update([
-            'is_sold' => true
-        ]);
+    // キャンセルしたとき
+    public function cancel()
+    {
+        return view('purchase.cancel');
     }
 
 

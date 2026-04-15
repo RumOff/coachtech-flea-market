@@ -35,6 +35,7 @@
 
 .item__card {
     max-width: 270px;
+    min-width: 270px;
     margin: 0 auto;
 }
 
