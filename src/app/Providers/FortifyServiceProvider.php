@@ -12,8 +12,14 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+
 use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
 use App\Http\Responses\RegisterResponse;
+
+use App\Http\Responses\LoginResponse;
+use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
+
+use \App\Models\User;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -52,5 +58,21 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::verifyEmailView(function () {
             return view('auth.verify-email');
         });
+
+        Fortify::authenticateUsing(function ($request) {
+
+            $user = User::where('email', $request->email)->first();
+
+            // ユーザー存在チェック
+            if ($user && \Hash::check($request->password, $user->password)) {
+
+                return $user;
+            }
+
+            return null;
+        });
+
+        $this->app->singleton(LoginResponseContract::class, LoginResponse::class);
+
     }
 }

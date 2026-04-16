@@ -34,14 +34,20 @@ class ItemController extends Controller
 
         // マイリストタブ
         if ($page === 'mylist') {
-            $items = auth()->user()->likedItems()
-                ->when($keyword, function ($q) use ($keyword) {
-                    $q->where(function ($qq) use ($keyword) {
-                        $qq->where('name', 'like', '%' . $keyword . '%');
-                    });
-                })
-                ->orderBy('items.created_at', 'desc')
-                ->get();
+            // ログイン中
+            if  (auth()->check()) {
+                $items = auth()->user()->likedItems()
+                    ->when($keyword, function ($q) use ($keyword) {
+                        $q->where(function ($qq) use ($keyword) {
+                            $qq->where('name', 'like', '%' . $keyword . '%');
+                        });
+                    })
+                    ->orderBy('items.created_at', 'desc')
+                    ->get();
+            } else {
+                // 未ログインの場合は空の配列を返す
+                $items = collect();
+            }
         } else {
             // 通常タブ(いいね順)
             $items = $query

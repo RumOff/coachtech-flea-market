@@ -10,6 +10,9 @@ use App\Http\Controllers\PurchaseController;
 
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
 Route::get('/item/{item_id}', [ItemController::class, 'show'])->name('items.show');
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->name('verification.notice');
 
 Route::middleware(['auth', 'verified'])->group(function (){
     

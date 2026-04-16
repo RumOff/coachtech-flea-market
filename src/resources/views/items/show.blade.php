@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div class="item-detail__container">
+<div class="container">
 
     {{-- 画像 --}}
     <div class="item-detail__left">
@@ -34,7 +34,7 @@
         </p>
 
         <p class="item-detail__price">
-            ¥{{ number_format($item->price) }}
+            ¥<span class="item-detail__price--big">{{ number_format($item->price) }}</span> (税込)
         </p>
 
         {{-- いいね・コメント --}}

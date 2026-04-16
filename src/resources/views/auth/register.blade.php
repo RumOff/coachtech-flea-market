@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="form__container">
+<div class="container">
 
   <form class="form" action="{{ route('register') }}" method="post">
     @csrf
@@ -76,8 +76,8 @@
     <div class="form__button">
       <button class="btn-red form__button-submit" type="submit" formnovalidate >登録</button>
     </div>
-    <div class="login__link">
-      <a class="login__button" href="/login">ログインの方はこちら</a>
+    <div class="auth-parent">
+      <a class="auth__button" href="/login">ログインの方はこちら</a>
     </div>
   </form>
   

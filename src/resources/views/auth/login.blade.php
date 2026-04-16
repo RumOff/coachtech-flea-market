@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="form__container">
+<div class="container">
   
   <form class="form" action="/login" method="post">
     @csrf
@@ -47,8 +47,8 @@
       <button class="form__button-submit btn-red" type="submit">ログイン</button>
     </div>
     
-    <div class="login-parent">
-      <a class="register__button" href="/register">会員登録の方はこちら</a>
+    <div class="auth-parent">
+      <a class="auth__button" href="/register">会員登録の方はこちら</a>
     </div>
 
   </form>

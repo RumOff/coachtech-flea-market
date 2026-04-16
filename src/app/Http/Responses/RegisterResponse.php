@@ -8,6 +8,8 @@ class RegisterResponse implements RegisterResponseContract
 {
     public function toResponse($request)
     {
-        return redirect('/mypage/profile');
+        auth()->logout();
+
+        return redirect('/email/verify');
     }
 }

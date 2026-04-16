@@ -130,12 +130,12 @@
 }
 
 /* 認証画面 */
-.form__container {
+.container {
     max-width: 1540px;
     min-width: 1400px;
     margin: 0 auto;
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    /* justify-content: center; */
 }
 
 .form {
@@ -173,4 +173,14 @@
 
 .form__button-submit {
     margin: 15px auto 20px;
+}
+
+.auth__button {
+    text-decoration: none;
+    font-size: 13px;
+    align-items: center;
+}
+
+.auth-parent {
+    text-align: center;
 }

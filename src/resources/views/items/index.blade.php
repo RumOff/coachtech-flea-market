@@ -7,7 +7,7 @@
 
 @section('content')
 
-<div class="item__container">
+<div class="container">
 
     <!-- タブ -->
     <div class="item__tabs">
