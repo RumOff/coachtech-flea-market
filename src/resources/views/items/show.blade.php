@@ -69,14 +69,14 @@
                     </form>
                 @endif
                 
-                <span>{{ $item->likes_count }}</span>
+                <span class="count">{{ $item->likes_count }}</span>
             </div>
 
             <div class="item-detail__action">
                 <div class="action__img">
                     <img src="{{ asset('images/comment_logo.png') }}" alt="comment_logo" class="action__img--like">
                 </div>
-                <span>{{ $item->comments_count }}</span>
+                <span class="count">{{ $item->comments_count }}</span>
             </div>
         </div>
 
@@ -96,38 +96,36 @@
 
 
         {{-- 商品情報 --}}
-        <div class="item-detail__info">
+        <h2 class="item-detail__section-title">
+            商品情報
+        </h2>
 
-            <h2 class="item-detail__section-title">
-                商品情報
-            </h2>
-
-            <div class="item-detail__category">
-                <p class="item-detail__label">
-                    カテゴリー
-                </p>
-
+        <div class="item-detail__category">
+            <p class="item-detail__label item-detail__label--category">
+                カテゴリー
+            </p>
+            <div class="item-detail__tag-parent">
                 @foreach($item->categories as $category)
                     <span class="category-tag">
                         {{ $category->name }}
                     </span>
                 @endforeach
             </div>
-            
-
-            <p class="item-detail__label">
-                商品の状態
-                <span class="small-text">{{ $item->condition->name }}</span>
-            </p>
-
         </div>
-
+        
+        <div class="item-detail__condition">
+            <p class="item-detail__label item-detail__label--category">
+                商品の状態
+            </p>        
+            <p class="small-text">{{ $item->condition->name }}</p>
+            
+        </div>
 
         {{-- コメント --}}
         <div class="item-detail__comments">
 
             <p class="item-detail__section-title title-comment">
-                コメント( {{ $item->comments->count() }} )
+                コメント({{ $item->comments->count() }})
             </p>
 
             @foreach($item->comments as $comment)
@@ -155,7 +153,7 @@
                 </div>
             @endforeach
             
-            <label class="item-detail__label">
+            <label class="item-detail__label item-detail__label--comment">
                 商品へのコメント
             </label>
             <form  action="{{ route('comments.store', ['item_id' => $item->id]) }}" method="POST">
