@@ -1,6 +1,5 @@
-.sell-container {
-    max-width: 500px;
-    margin: 0 auto;
+.container {
+    padding: 0 500px;
 }
 
 .sell__title {
@@ -27,9 +26,16 @@
     gap: 5px;
 }
 
+.sell-form__section--img {
+    display: flex;
+    flex-direction: column;
+}
+
 .sell-form__upload-area {
     border: 1px dotted;
     padding: 40px;
+    display: flex;
+    justify-content: center;
 }
 .sell-form__file-input {
     text-decoration: none;
@@ -38,17 +44,6 @@
 .sell-form__file-input {
     display: none;
 }
-
-/* .sell-form__file-label {
-    border: 2px solid;
-    border-color: #ff5555;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #ff5555;
-    padding: 5px 15px;
-    margin: 110px;
-} */
 
 /* 商品詳細 */
 .sell-form__sub-title {
@@ -72,8 +67,8 @@
     color: #ff5555;
     border: 1px solid;
     border-radius: 15px;
-    padding: 2px 12px;
-    margin: 1px 10px;
+    padding: 0 12px;
+    margin: 6px 3px;
 }
 
 .category__checkbox:checked + .category__label {
@@ -136,4 +131,8 @@
     border-radius: 5px;
 
     font-size: 14px;
+}
+
+.sell-form__btn-submit {
+    margin: 50px 0 70px;
 }

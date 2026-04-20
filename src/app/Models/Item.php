@@ -37,16 +37,18 @@ class Item extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function likes()
-    {
-        return $this->hasMany(Like::class);
-    }
-
+    // いいねしたユーザー
     public function likedUsers()
     {
         return $this->belongsToMany(User::class, 'likes');
     }
 
+    // いいね数用
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+    
     public function scopeDetail($query)
     {
         return $query

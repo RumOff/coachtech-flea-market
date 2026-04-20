@@ -6,23 +6,21 @@
 
 @section('content')
 
-    <div class="sell-container">
+    <div class="container">
       <h1 class="sell__title">商品の出品</h1>
 
       <form action="{{ route('items.store') }}" method="POST" enctype="multipart/form-data" class="sell-form">
         @csrf
 
         {{-- 商品画像 --}}
-        <section class="sell-form__section">
-          <p class="sell-form__label">商品画像</p>
+        <section class="sell-form__section sell-form__section--img">
+          <label class="sell-form__label">商品画像</label>
           <div class="sell-form__upload-area">
             <label class="sell-form__file-label btn-select">画像を選択する
               <input type="file" name="image" id="image" class="sell-form__file-input">
             </label>
-            @error('image')
-            <p class="error">{{ $message }}</p>
-            @enderror
           </div>
+          <p class="error">@error('image'){{ $message }}@enderror</p>
         </section>
 
         {{-- 商品詳細 --}}

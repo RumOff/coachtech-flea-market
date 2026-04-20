@@ -205,7 +205,6 @@
     background: none;
 
     padding: 0;
-    margin: 0 0 10px 0;
 
     font: inherit;
     color: inherit;
@@ -213,5 +212,10 @@
     width: 100%;
 
     min-height: 110px
-    
+}
+
+.item-detail__comment-btn {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }

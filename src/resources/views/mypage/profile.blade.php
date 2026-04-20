@@ -6,9 +6,9 @@
 
 @section('content')
 
-<div class="profile__container">
+<div class="container">
 
-    <h1 class="profile__title">
+    <h1 class="form__title">
         プロフィール設定
     </h1>
 
@@ -39,9 +39,9 @@
                 value="{{ old('user_name', $profile->user_name ?? '') }}"
                 class="profile__input"
             >
-            @error('user_name')
-            <p class="profile__error">{{ $message }}</p>
-            @enderror
+            
+            <p class="error">@error('user_name'){{ $message }}@enderror</p>
+            
         </div>
 
         {{-- 郵便番号 --}}
@@ -55,9 +55,9 @@
                 value="{{ old('postal_code', $profile->postal_code ?? '') }}"
                 class="profile__input"
             >
-            @error('postal_code')
-            <p class="profile__error">{{ $message }}</p>
-            @enderror
+            
+            <p class="error">@error('postal_code'){{ $message }}@enderror</p>
+            
         </div>
 
         {{-- 住所 --}}
@@ -71,9 +71,9 @@
                 value="{{ old('address', $profile->address ?? '')  }}"
                 class="profile__input"
             >
-            @error('address')
-            <p class="profile__error">{{ $message }}</p>
-            @enderror
+            
+            <p class="error">@error('address'){{ $message }}@enderror</p>
+            
         </div>
 
         {{-- 建物名 --}}
@@ -87,9 +87,9 @@
                 value="{{ old('building', $profile->building ?? '') }}"
                 class="profile__input"
             >
-            @error('building')
-            <p class="profile__error">{{ $message }}</p>
-            @enderror
+            
+            <p class="error">@error('building'){{ $message }}@enderror</p>
+            
         </div>
 
         <button type="submit" class="btn-red profile__btn">

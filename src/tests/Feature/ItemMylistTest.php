@@ -43,7 +43,14 @@ class ItemMylistTest extends TestCase
             'condition_id' => $condition->id,
         ]);
 
-        $response = $this->get('/?tab=mylist');
+        $item = Item::factory()->create([
+            'user_id' => $user->id,
+            'condition_id' => $condition->id,
+            'is_sold' => 1, // ← これも重要🔥
+        ]);
+        
+        $user->likedItems()->attach($item->id);
+        $response = $this->actingAs($user)->get('/?tab=mylist');
 
         $response->assertSee('Sold');
     }

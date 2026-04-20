@@ -8,7 +8,7 @@
 
     <form action="{{ route('purchase.store', ['item_id' => $item->id]) }}" method="POST">
     @csrf
-        <div class="purchase__container">
+        <div class="container">
             <div class="purchase__left">
 
                 <div class="purchase__box">
@@ -26,16 +26,15 @@
                     <h2 class="purchase__label">
                         支払方法
                     </h2>
-                    <select name="payment" id="payment" class="purchase__select">
-                        <option value="">選択してください</option>
-                        <option value="credit" {{ old('payment') === 'credit' ? 'selected' : '' }}>クレジットカード</option>
-                        <option value="convenience" {{ old('payment') == 'convenience' ? 'selected' : '' }}>コンビニ払い</option>
-                    </select>
-                    <div class="error">
-                        @error('payment')
-                            <p class="purchase__error">{{ $message }}</p>
-                        @enderror
+
+                    <div class="purchase__select--wrapper">
+                        <select name="payment" id="payment" class="purchase__select">
+                            <option value="">選択してください</option>
+                            <option value="credit" {{ old('payment') === 'credit' ? 'selected' : '' }}>クレジットカード</option>
+                            <option value="convenience" {{ old('payment') == 'convenience' ? 'selected' : '' }}>コンビニ払い</option>
+                        </select>
                     </div>
+                        <p class="error">@error('payment'){{ $message }}@enderror</p>
                 </div>
 
                 <div class="border-line"></div>

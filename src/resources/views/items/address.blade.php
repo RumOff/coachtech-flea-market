@@ -6,9 +6,9 @@
 
 @section('content')
 
-<div class="address">
+<div class="container">
 
-    <h1 class="address__title">
+    <h1 class="form__title">
         住所の変更
     </h1>
 
@@ -21,9 +21,9 @@
                 郵便番号
             </label>
             <input type="text" name="postal_code" class="address__input" value="{{ old('postal_code', $profile->postal_code ?? '') }}">
-            @error('postal_code')
-            <p class="address__error">{{ $message }}</p>
-            @enderror
+            
+            <p class="error">@error('postal_code'){{ $message }}@enderror</p>
+            
         </div>
 
         {{-- 住所 --}}
@@ -32,9 +32,9 @@
                 住所
             </label>
             <input type="text" name="address" class="address__input" value="{{ old('address', $profile->address ?? '') }}">
-            @error('address')
-            <p class="address__error">{{ $message }}</p>
-            @enderror
+            
+            <p class="error">@error('address'){{ $message }}@enderror</p>
+            
         </div>
 
         {{-- 建物名 --}}

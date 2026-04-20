@@ -1,6 +1,8 @@
-.purchase__container {
+.container {
     display: flex;
+    padding: 0 40px;
 }
+
 
 /* 左側 */
 .purchase__left {
@@ -10,6 +12,7 @@
 
 .purchase__box {
     display: flex;
+    margin: 20px 0 50px 0;
 }
 
 .purchase__box--product-name {
@@ -42,9 +45,35 @@
     margin: 0 20px;
 }
 
+.purchase__select--wrapper{
+    position: relative; 
+    display: inline-block;
+}
+
+.purchase__select--wrapper::after {
+    content: "▼";
+    font-size: 14px;
+    color: gray;
+    position: absolute;
+
+    right: 10px;
+    top: 55%;
+    transform: translateY(-50%);
+
+    pointer-events: none;
+}
+
 .purchase__select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
     margin: 30px 0 20px 60px;
     width: 200px;
+    height: 25px;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    color: gray;
 }
 
 .purchase__pay-box {

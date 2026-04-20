@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <div class="profile__container">
+    <div class="container">
         <div class="profile__header">
             <div class="profile__left">
                 <img src="{{ $profile && $profile->avatar 

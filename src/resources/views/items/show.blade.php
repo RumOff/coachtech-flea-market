@@ -46,7 +46,7 @@
                         @csrf
                         @method('DELETE')
 
-                        <button type="submit" class="action__img">
+                        <button type="submit" class="action__btn">
                             <img 
                                 src="{{ asset('images/heart_logo_pink.png') }}" 
                                 alt="liked"
@@ -156,21 +156,19 @@
             <label class="item-detail__label item-detail__label--comment">
                 商品へのコメント
             </label>
+
             <form  action="{{ route('comments.store', ['item_id' => $item->id]) }}" method="POST">
                 @csrf
-
-                <textarea name="comment" class="item-detail__comment-input">{{ old('comment') }}</textarea>
-
-                <button type="submit" class="btn-red item-detail__comment-button">
+                
+                <div class="item-detail__comment-btn">
+                    <textarea name="comment" class="item-detail__comment-input">{{ old('comment') }}</textarea>
+                    <p class="error">@error('comment'){{ $message }}@enderror</p>
+                </div>
+                
+                <button type="submit" class="btn-red">
                     コメントを送信する
                 </button>
-
             </form>
-            <div class="item-detail__comment--error">
-                @error('comment')
-                    <p class="msg_error">{{ $message }}</p>
-                @enderror
-            </div>
 
         </div>
     </div>
