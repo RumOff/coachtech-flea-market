@@ -8,8 +8,6 @@ class RegisterResponse implements RegisterResponseContract
 {
     public function toResponse($request)
     {
-        auth()->logout();
-
-        return redirect('/email/verify');
+        return redirect()->route('verification.notice');
     }
 }

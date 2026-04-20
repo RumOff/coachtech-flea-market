@@ -8,11 +8,19 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PurchaseController;
 
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    // メール認証完了処理
+    $request->fulfill();
+    return redirect('/mypage/profile');
+})->middleware(['signed'])->name('verification.verify');
+
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
 Route::get('/item/{item_id}', [ItemController::class, 'show'])->name('items.show');
-Route::get('/email/verify', function () {
-    return view('auth.verify-email');
-})->name('verification.notice');
+// Route::get('/email/verify', function () {
+//     return view('auth.verify-email');
+// })->name('verification.notice');
 
 Route::middleware(['auth', 'verified'])->group(function (){
     

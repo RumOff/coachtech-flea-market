@@ -53,8 +53,6 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(10)->by($email . $request->ip());
         });
 
-        Fortify::redirects('register', '/mypage/profile');
-
         Fortify::verifyEmailView(function () {
             return view('auth.verify-email');
         });
@@ -74,5 +72,6 @@ class FortifyServiceProvider extends ServiceProvider
 
         $this->app->singleton(LoginResponseContract::class, LoginResponse::class);
 
+        Fortify::redirects('email-verification', '/mypage/profile');
     }
 }

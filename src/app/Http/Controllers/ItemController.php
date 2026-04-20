@@ -13,6 +13,9 @@ class ItemController extends Controller
 {
     public function index(Request $request)
     {
+        if (auth()->check() && !auth()->user()->hasVerifiedEmail()) {
+            auth()->logout();
+        }
         $page = $request->query('tab');
         $keyword = $request->query('keyword');
 
@@ -35,7 +38,7 @@ class ItemController extends Controller
         // マイリストタブ
         if ($page === 'mylist') {
             // ログイン中
-            if  (auth()->check()) {
+            if (auth()->check()) {
                 $items = auth()->user()->likedItems()
                     ->when($keyword, function ($q) use ($keyword) {
                         $q->where(function ($qq) use ($keyword) {
@@ -52,7 +55,7 @@ class ItemController extends Controller
             // 通常タブ(いいね順)
             $items = $query
                 ->withCount('likes')
-                ->when($keyword, function ($q) use ($keyword){
+                ->when($keyword, function ($q) use ($keyword) {
                     $q->where('name', 'like', '%' . $keyword . '%');
                 })
                 ->orderBy('likes_count', 'desc')
