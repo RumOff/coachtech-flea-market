@@ -50,7 +50,7 @@ class ProfileController extends Controller
             $data
         );
         
-        return redirect()->route('items.index');
+        return redirect()->route('mypage.index');
 
     }
 

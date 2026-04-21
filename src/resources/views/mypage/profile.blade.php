@@ -18,7 +18,7 @@
 
         {{-- プロフィール画像 --}}
         <div class="profile__img">
-            <img src="{{ $profile && $profile->avatar 
+            <img id="preview" src="{{ $profile && $profile->avatar 
                         ? asset('storage/' . (optional($profile)->avatar)) 
                         : asset('/images/default.png') }}" class="header__avatar">
 
@@ -98,5 +98,21 @@
      
     </form>
 </div>
+
+<script>
+document.getElementById('avatar').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            document.getElementById('preview').src = e.target.result;
+        }
+
+        reader.readAsDataURL(file);
+    }
+});
+</script>
 
 @endsection

@@ -72,7 +72,7 @@
                     <div class="purchase__box--price">
                         <label for="" class="purchase__label-check">支払い方法</label>
 
-                        <p class="purchase__">aaa</p>
+                        <p class="purchase__payment" id="payment_text">aaa</p>
                         <input type="hidden" name="item_id" value="{{ $item->id }}">
                     </div>
                 </div>    
@@ -81,5 +81,23 @@
                 
             </div>
         </div>
-    </form>    
+    </form>   
+    
+    <script>
+    document.getElementById('payment').addEventListener('change', function() {
+        const value = this.value;
+
+        let text = '';
+
+        if (value === 'credit') {
+            text = 'クレジットカード';
+        } else if (value === 'convenience') {
+            text = 'コンビニ払い';
+        } else {
+            text = '未選択';
+        }
+
+        document.getElementById('payment_text').textContent = text;
+    });
+    </script>
 @endsection
