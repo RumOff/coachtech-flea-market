@@ -48,11 +48,15 @@
                         <a href="{{ route('purchase.address', ['item_id' => $item->id]) }}" class="purchase__link--update">変更する</a>
                     </div>
 
-                    <p class="purchase__address">
-                        〒{{ $address['postal_code'] ?? Auth::user()->profile->postal_code }}<br>
-                        {{ $address['address'] ??Auth::user()->profile->address }}
-                        {{ $address['building'] ??Auth::user()->profile->building }}
-                    </p>
+                    @if(!empty($useAddress->address))
+                        <p class="purchase__address">
+                            〒{{ $useAddress->postal_code ?? '' }}<br>
+                            {{ $useAddress->address ?? ''  }}
+                            {{ $useAddress->building ?? ''  }}
+                        </p>
+                    @else
+                        <p class="error">住所を登録してください</p>
+                    @endif
 
                 </div>
 
@@ -72,7 +76,7 @@
                     <div class="purchase__box--price">
                         <label for="" class="purchase__label-check">支払い方法</label>
 
-                        <p class="purchase__payment" id="payment_text">aaa</p>
+                        <p class="purchase__payment" id="payment_text"></p>
                         <input type="hidden" name="item_id" value="{{ $item->id }}">
                     </div>
                 </div>    

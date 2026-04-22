@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Item;
@@ -13,7 +12,8 @@ class ItemMylistTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_いいねした商品だけが表示される()
+    // いいねした商品だけが表示される
+    public function test_only_liked_items_are_displayed()
     {
         $user = User::factory()->create();
         $otherUser = User::factory()->create();
@@ -30,9 +30,10 @@ class ItemMylistTest extends TestCase
         $response = $this->actingAs($user)->get('/?tab=mylist');
 
         $response->assertSee('いいねした商品');
-    }   
+    }
 
-    public function test_購入済み商品はSoldが表示される()
+    // 購入済み商品はSoldが表示される
+    public function test_sold_label_is_displayed_in_mylist()
     {
         $user = User::factory()->create();
         $condition = Condition::factory()->create();
@@ -55,7 +56,8 @@ class ItemMylistTest extends TestCase
         $response->assertSee('Sold');
     }
 
-    public function test_未承認は何も表示されない()
+    // 未承認は何も表示されない
+    public function test_nothing_is_displayed_for_guest_user()
     {
         $user = User::factory()->create();
         $condition = Condition::factory()->create();

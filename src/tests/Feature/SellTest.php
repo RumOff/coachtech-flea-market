@@ -13,8 +13,8 @@ class SellTest extends TestCase
 {
     use RefreshDatabase;
 
-
-    public function test_商品が出品できる()
+    // 商品が出品できる
+    public function test_item_can_be_listed()
     {
         $user = User::factory()->create();
         $condition = Condition::factory()->create();

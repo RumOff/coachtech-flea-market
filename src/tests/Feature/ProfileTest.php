@@ -15,7 +15,8 @@ class ProfileTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_ユーザー情報が表示される()
+    // ユーザー情報が表示される
+    public function test_user_profile_information_is_displayed()
     {
         $user = User::factory()->create();
 
@@ -34,7 +35,8 @@ class ProfileTest extends TestCase
         $response->assertSee('test.jpg');
     }
 
-    public function test_出品商品一覧が表示される()
+    // 出品商品一覧が表示される
+    public function test_user_selling_items_are_displayed()
     {
         $user = User::factory()->create();
         $condition = Condition::factory()->create();
@@ -51,7 +53,8 @@ class ProfileTest extends TestCase
         $response->assertSee('出品商品');
     }
 
-    public function test_購入商品一覧が表示される()
+    // 購入商品一覧が表示される
+    public function test_user_purchased_items_are_displayed()
     {
         $user = User::factory()->create();
         $condition = Condition::factory()->create();
@@ -83,7 +86,8 @@ class ProfileTest extends TestCase
         $response->assertSee('購入商品');
     }
 
-    public function test_プロフィール編集画面に初期値が表示される()
+    // プロフィール編集画面に初期値が表示される
+    public function test_profile_edit_page_has_initial_values()
     {
         $user = User::factory()->create();
 

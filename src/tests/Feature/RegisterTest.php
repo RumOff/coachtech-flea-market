@@ -3,14 +3,14 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class RegisterTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_名前未入力でエラーメッセージを表示()
+    // 名前未入力でエラーメッセージを表示
+    public function test_name_is_required_for_registration()
     {
         $response = $this->post('/register', [
             'name' => '' ,
@@ -22,7 +22,8 @@ class RegisterTest extends TestCase
         $response->assertSessionHasErrors(['name']);
     }
 
-    public function test_メールアドレス未入力でエラーメッセージを表示()
+    // メールアドレス未入力でエラーメッセージを表
+    public function test_email_is_required_for_registration()
     {
         $response = $this->post('/register', [
             'name' => 'test',
@@ -34,7 +35,8 @@ class RegisterTest extends TestCase
         $response->assertSessionHasErrors(['email']);
     }
 
-    public function test_パスワード未入力でエラーメッセージを表示()
+    // パスワード未入力でエラーメッセージを表示
+    public function test_password_is_required_for_registration()
     {
         $response = $this->post('/register', [
             'name' => 'test',
@@ -46,7 +48,8 @@ class RegisterTest extends TestCase
         $response->assertSessionHasErrors(['password']);
     }
 
-    public function test_パスワードが7文字以下でエラーメッセージを表示()
+    // パスワードが7文字以下でエラーメッセージを表示
+    public function test_password_must_be_at_least_8_characters()
     {
         $response = $this->post('/register', [
             'name' => 'test',
@@ -58,7 +61,8 @@ class RegisterTest extends TestCase
         $response->assertSessionHasErrors(['password']);
     }
 
-    public function test_パスワードが確認用パスワードと不一致でエラーメッセージを表示()
+    // パスワードが確認用パスワードと不一致でエラーメッセージを表示
+    public function test_password_confirmation_must_match()
     {
         $response = $this->post('/register', [
             'name' => 'test',
@@ -70,7 +74,8 @@ class RegisterTest extends TestCase
         $response->assertSessionHasErrors(['password_confirmation']);
     }
 
-    public function test_すべての項目入力で会員登録()
+    // すべての項目入力で会員登録
+    public function test_user_can_register_with_valid_data()
     {
         $email = 'test' . uniqid() . '@example.com';
 

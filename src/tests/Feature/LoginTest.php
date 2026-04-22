@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 
@@ -11,7 +10,8 @@ class LoginTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_メールアドレス未入力でエラーメッセージを表示()
+    // メールアドレス未入力でエラーメッセージを表示
+    public function test_email_is_required_for_login()
     {
         $response = $this->post('/login', [
             'email' => '',
@@ -22,7 +22,8 @@ class LoginTest extends TestCase
         $response->assertSessionHasErrors(['email']);
     }
 
-    public function test_パスワード未入力でエラーメッセージを表示()
+    // パスワード未入力でエラーメッセージを表示
+    public function test_password_is_required_for_login()
     {
         $response = $this->post('/login', [
             'email' => 'test' . uniqid() . '@example.com',
@@ -33,7 +34,8 @@ class LoginTest extends TestCase
         $response->assertSessionHasErrors(['password']);
     }
 
-    public function test_入力情報不正でエラーメッセージを表示()
+    // 入力情報不正でエラーメッセージを表示 
+    public function test_invalid_credentials_show_error()
     {
         $user = User::factory()->create([
             'email' => 'test@example.com',
@@ -48,7 +50,8 @@ class LoginTest extends TestCase
         $this->assertGuest();
     }
 
-    public function test_正常入力でログイン可能()
+    // 正常入力でログイン可能
+    public function test_user_can_login_with_valid_credentials()
     {
         $user = User::factory()->create([
             'email' => 'test@example.com',

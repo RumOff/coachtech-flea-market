@@ -13,14 +13,16 @@ class ItemIndexTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_商品一覧が表示される()
+    // 商品一覧が表示される
+    public function test_items_are_displayed_on_index_page()
     {
         $response = $this->get('/');
 
         $response->assertStatus(200);
     }
 
-    public function test_購入済み商品はSoldが表示される()
+    // 購入済み商品はSoldが表示される
+    public function test_sold_label_is_displayed_in_mylist()
     {
         $user = User::factory()->create();
         $condition = Condition::factory()->create();
@@ -36,7 +38,8 @@ class ItemIndexTest extends TestCase
         $response->assertSee('Sold');
     }
 
-    public function test_自分が出品した商品は表示されない()
+    // 自分が出品した商品は表示されない
+    public function test_user_items_are_not_displayed()
     {
         $user = User::factory()->create();
         // 他のログインユーザー

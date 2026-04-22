@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Item;
 use App\Models\Purchase;
 use App\Models\Address;
-// use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\PurchaseRequest;
 use App\Http\Requests\AddressRequest;
 use Stripe\Stripe;
@@ -18,23 +17,48 @@ class PurchaseController extends Controller
     public function purchase($item_id)
     {
         $item = Item::findOrfail($item_id);
+        $user = auth()->user();
+        $profile = $user->profile;
 
         $address = Address::where('user_id', auth()->id())
             ->where('item_id', $item_id)
             ->latest()
             ->first();
 
-        return view('items.purchase', compact('item', 'address'));
+        $useAddress = $address ?? $profile;
+
+        return view('items.purchase', compact('item', 'useAddress'));
     }
 
     public function store(PurchaseRequest $request, $item_id)
     {
         $item = Item::LockForUpdate()->findOrFail($request->item_id);
-        
+        $user = auth()->user();
+
         // 売り切れチェック
         if ($item->is_sold) {
             abort(403, 'すでに購入されています');
         }
+
+        // 住所取得（Address優先）
+        $address = Address::where('user_id', $user->id)
+            ->where('item_id', $item_id)
+            ->first();
+
+        $profile = $user->profile;
+
+        // 両方なければNG
+        if (
+            (!$address || !$address->address) &&
+            (!$profile || !$profile->address)
+        ) {
+            return redirect()
+                ->route('purchase', ['item_id' => $item_id])
+                ->with('error', '住所を登録してください');
+        }
+
+        // 使用する住所
+        $useAddress = $address ?? $profile;
 
         Stripe::setApiKey(config('services.stripe.secret'));
 

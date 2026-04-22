@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Condition;
@@ -14,7 +13,8 @@ class AddressTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_変更した住所が購入画面に表示される()
+    // 変更した住所が購入画面に表示される
+    public function test_address_update_is_reflected_on_purchase_page()
     {
         $user = User::factory()->create();
         $condition = Condition::factory()->create();

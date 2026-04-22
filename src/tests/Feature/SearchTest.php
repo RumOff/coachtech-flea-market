@@ -13,7 +13,8 @@ class SearchTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_商品名で部分一致検索ができる()
+    // 商品名で部分一致検索ができる
+    public function test_items_can_be_searched_by_name()
     {
         $user = User::factory()->create();
         $otherUser = User::factory()->create();
@@ -37,7 +38,8 @@ class SearchTest extends TestCase
         $response->assertDontSee('ばななのキーホルダー');
     }
 
-    public function test_マイリストでも検索条件が保持される()
+    // マイリストでも検索条件が保持される
+    public function test_search_keyword_is_retained_in_mylist()
     {
         $user = User::factory()->create();
         $condition = Condition::factory()->create();

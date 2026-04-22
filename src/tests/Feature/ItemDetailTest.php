@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Condition;
@@ -15,7 +14,8 @@ class ItemDetailTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_商品詳細に必要な情報が表示される()
+    // 商品詳細に必要な情報が表示される
+    public function test_item_detail_displays_required_information()
     {
         $user = User::factory()->create();
         $commentUser = User::factory()->create();
@@ -50,7 +50,8 @@ class ItemDetailTest extends TestCase
 
     }
 
-    public function test_複数のカテゴリが表示される()
+    // 複数のカテゴリが表示される
+    public function test_multiple_categories_are_displayed()
     {
         $user = User::factory()->create();
         $condition = Condition::factory()->create();

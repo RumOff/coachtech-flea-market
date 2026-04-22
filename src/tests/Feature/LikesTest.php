@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Condition;
@@ -12,8 +11,9 @@ use App\Models\Item;
 class LikesTest extends TestCase
 {
     use RefreshDatabase;
-    
-    public function test_いいねすると登録される()
+
+    // いいねすると登録される
+    public function test_item_can_be_liked()
     {
         $user = User::factory()->create();
         $condition = Condition::factory()->create();
@@ -34,7 +34,8 @@ class LikesTest extends TestCase
         ]);
     }
 
-    public function test_いいね済みの場合アイコンが変わる()
+    // いいね済みの場合アイコンが変わる
+    public function test_like_icon_changes_when_liked()
     {
         $user = User::factory()->create();
         $condition = Condition::factory()->create();
@@ -53,7 +54,8 @@ class LikesTest extends TestCase
         $response->assertSee('images/heart_logo_pink.png');
     }
 
-    public function test_いいねを再度押すと解除される()
+    // いいねを再度押すと解除される
+    public function test_like_can_be_removed_by_clicking_again()
     {
         $user = User::factory()->create();
         $condition = Condition::factory()->create();

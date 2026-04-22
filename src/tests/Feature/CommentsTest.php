@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Condition;
@@ -13,7 +12,8 @@ class CommentsTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_ログインユーザーはコメント送信できる()
+    // ログインユーザーはコメント送信できる
+    public function test_authenticated_user_can_post_comment()
     {
         $user = User::factory()->create();
         $condition = Condition::factory()->create();
@@ -36,7 +36,8 @@ class CommentsTest extends TestCase
         ]);
     }
 
-    public function test_未ログインユーザーはコメント送信できない()
+    // 未ログインユーザーはコメント送信できない
+    public function test_guest_user_cannot_post_comment()
     {
         $user = User::factory()->create();
         $condition = Condition::factory()->create();
@@ -57,7 +58,8 @@ class CommentsTest extends TestCase
         ]);
     }
 
-    public function test_コメントが未入力の場合エラーが表示される()
+    // コメントが未入力の場合エラーが表示される
+    public function test_comment_is_required()
     {
         $user = User::factory()->create();
         $condition = Condition::factory()->create();
@@ -76,7 +78,8 @@ class CommentsTest extends TestCase
         $response->assertSessionHasErrors(['comment']);
     }
 
-    public function test_コメントが255以上の場合エラーが表示される()
+    // コメントが255以上の場合エラーが表示される
+    public function test_comment_cannot_exceed_255_characters()
     {
         $user = User::factory()->create();
         $condition = Condition::factory()->create();

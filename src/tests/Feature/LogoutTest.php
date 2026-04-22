@@ -3,16 +3,15 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
-use SebastianBergmann\FileIterator\Factory;
 
 class LogoutTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_ログアウトできる()
+    // ログアウトできる
+    public function test_user_can_logout()
     {
         $user = User::Factory()->create();
 

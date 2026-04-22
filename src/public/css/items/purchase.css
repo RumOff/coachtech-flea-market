@@ -113,8 +113,13 @@
 .purchase__label-check {
     font-size: 15px;
     text-align: center;
+    margin: 16px 0 ;
 }
 
 .border-line--check {
+    margin: 0;
+}
+
+.purchase__payment {
     margin: 0;
 }

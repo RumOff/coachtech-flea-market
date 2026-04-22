@@ -31,7 +31,7 @@ class ExhibitionRequest extends FormRequest
             'categories' => 'required|array',
             'categories.*' => 'exists:categories,id',
             'condition_id' => 'required',
-            'price' => 'required|integer|min:0',
+            'price' => 'required|integer|min:50',
         ];
     }
 
@@ -48,7 +48,7 @@ class ExhibitionRequest extends FormRequest
             'condition_id.required' => '商品状態を選択してください',
             'price.required' => '金額を入力してください',
             'price.integer' => '金額は数字で入力してください',
-            'price.min' => '金額は0円以上で入力してください',
+            'price.min' => '金額は50円以上で入力してください',
         ];
     }
 }
