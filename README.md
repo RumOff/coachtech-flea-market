@@ -35,24 +35,24 @@
 - php artisan migrate
 - php artisan db:seed
 
-### エラー対応
-- 権限エラー(Permission denied)
+### エラー時の対処法
+- 権限エラー(Permission denied)<br>
+    chmod -R 777 storage<br>
+    chmod -R 777 bootstrap/cache<br>
+<br>
+- メール送信エラー(Cannot send message without a sender address)<br>
+    ▼.env<br>
+    MAIL_FROM_ADDRESS=test@example.com<br>
+    MAIL_FROM_NAME="FleaMarket"<br>
+<br>
+- Stripeエラー(No API key provided)<br>
+    ▼env.<br>
+    STRIPE_KEY=pk_test_xxxxx<br>
+    STRIPE_SECRET=sk_test_xxxxx<br>
+<br>
+- 画像アップロード時の権限エラー(storage/app/public に書き込み不可)<br>
     chmod -R 777 storage
-    chmod -R 777 bootstrap/cache
 
-- メール送信エラー(Cannot send message without a sender address)
-    ▼.env
-    MAIL_FROM_ADDRESS=test@example.com
-    MAIL_FROM_NAME="FleaMarket"
-
-- Stripeエラー(No API key provided)
-    ▼env.
-    STRIPE_KEY=pk_test_xxxxx
-    STRIPE_SECRET=sk_test_xxxxx
-
-- 画像アップロード時の権限エラー(storage/app/public に書き込み不可)
-    chmod -R 777 storage
-    
 <br>
 
 ## 開発環境(VSCode)
